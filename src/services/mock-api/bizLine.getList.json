@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "bizLineId": "a41852033cb740658b44f8dd4bfff00c",
+    "bizLineName": "测试",
+    "status": 0,
+    "createTime": "2020-01-07 17:10:01",
+    "updateTime": "2020-01-08 10:42:27"
+  },
+  {
+    "id": 2,
+    "bizLineId": "70475ddc6fa24425ba2b18ba64c5666d",
+    "bizLineName": "大平台 - admin后台",
+    "status": 1,
+    "createTime": "2020-01-08 10:55:50",
+    "updateTime": "2020-01-20 14:49:47"
+  },
+  {
+    "id": 3,
+    "bizLineId": "fe1423e1435149fbbbb78d8c7e7cee5d",
+    "bizLineName": "大平台 - 创意方前台",
+    "status": 1,
+    "createTime": "2020-01-20 14:49:40",
+    "updateTime": "2020-01-20 14:50:44"
+  },
+  {
+    "id": 4,
+    "bizLineId": "9ce0d2ddf57a48cca8528f6e279c8f47",
+    "bizLineName": "大平台 - 客户前台",
+    "status": 1,
+    "createTime": "2020-01-20 15:00:07",
+    "updateTime": "2020-01-20 15:11:15"
+  },
+  {
+    "id": 5,
+    "bizLineId": "a183ba64363c411daf65f4bb8cddeeaf",
+    "bizLineName": "大平台 - user",
+    "status": 1,
+    "createTime": "2020-01-20 15:35:54",
+    "updateTime": "2020-01-20 15:47:55"
+  },
+  {
+    "id": 6,
+    "bizLineId": "2f39b22874e64d5c9b00f460d86449c9",
+    "bizLineName": "大平台",
+    "status": 1,
+    "createTime": "2020-02-10 18:44:47",
+    "updateTime": "2020-02-10 18:44:47"
+  },
+  {
+    "id": 7,
+    "bizLineId": "d14eae7480b640cab48af3db8567d298",
+    "bizLineName": "数据智能",
+    "status": 1,
+    "createTime": "2020-02-10 18:44:58",
+    "updateTime": "2020-02-10 18:44:58"
+  }
+]

@@ -1,0 +1,105 @@
+{
+  "total": 65,
+  "rows": [
+    {
+      "id": 6,
+      "eventTypeId": "b00783e928224c21a6e4adc348add0cb",
+      "eventName": "生成项目-智能解析-点击",
+      "eventType": 0,
+      "status": 1,
+      "createTime": "2020-01-08 19:17:47",
+      "updateTime": null,
+      "bizLineId": "70475ddc6fa24425ba2b18ba64c5666d"
+    },
+    {
+      "id": 7,
+      "eventTypeId": "eed45ae1844f4abe931be41a402e1e91",
+      "eventName": "生成项目-智能解析标签-点击",
+      "eventType": 0,
+      "status": 1,
+      "createTime": "2020-01-08 19:17:42",
+      "updateTime": null,
+      "bizLineId": "70475ddc6fa24425ba2b18ba64c5666d"
+    },
+    {
+      "id": 8,
+      "eventTypeId": "315a5d66c20740e8a13a30c48170e35d",
+      "eventName": "生成项目-保存草稿按钮-点击",
+      "eventType": 0,
+      "status": 1,
+      "createTime": "2020-01-08 19:17:35",
+      "updateTime": null,
+      "bizLineId": "70475ddc6fa24425ba2b18ba64c5666d"
+    },
+    {
+      "id": 9,
+      "eventTypeId": "60eda471b51b46579e5cf2efdf558846",
+      "eventName": "生成项目-保存按钮-点击",
+      "eventType": 0,
+      "status": 1,
+      "createTime": "2020-01-08 19:18:21",
+      "updateTime": null,
+      "bizLineId": "70475ddc6fa24425ba2b18ba64c5666d"
+    },
+    {
+      "id": 10,
+      "eventTypeId": "b02c5ed0b6b94a4a951462a01681e50a",
+      "eventName": "前台【注册】按钮",
+      "eventType": 0,
+      "status": 1,
+      "createTime": "2020-01-20 15:56:40",
+      "updateTime": null,
+      "bizLineId": "a183ba64363c411daf65f4bb8cddeeaf"
+    },
+    {
+      "id": 11,
+      "eventTypeId": "8fcd762593a74169a7c32081f7e73d1f",
+      "eventName": "填写邮箱/手机号后的【立即入驻】",
+      "eventType": 0,
+      "status": 1,
+      "createTime": "2020-01-20 15:28:08",
+      "updateTime": null,
+      "bizLineId": "fe1423e1435149fbbbb78d8c7e7cee5d"
+    },
+    {
+      "id": 12,
+      "eventTypeId": "107c5c702b3d44a0a15cebdc1315e616",
+      "eventName": "选择以创意方身份【入驻特赞】",
+      "eventType": 0,
+      "status": 1,
+      "createTime": "2020-01-20 15:57:03",
+      "updateTime": null,
+      "bizLineId": "a183ba64363c411daf65f4bb8cddeeaf"
+    },
+    {
+      "id": 13,
+      "eventTypeId": "b86375479174417b8e8bfa8d31f53ef8",
+      "eventName": "选择以个人/企业创意方【申请入驻】",
+      "eventType": 0,
+      "status": 1,
+      "createTime": "2020-01-20 15:28:21",
+      "updateTime": null,
+      "bizLineId": "fe1423e1435149fbbbb78d8c7e7cee5d"
+    },
+    {
+      "id": 14,
+      "eventTypeId": "b70463c5afb645b2a553832744147cb0",
+      "eventName": "身份认证【下一步】",
+      "eventType": 0,
+      "status": 1,
+      "createTime": "2020-01-20 15:28:26",
+      "updateTime": null,
+      "bizLineId": "fe1423e1435149fbbbb78d8c7e7cee5d"
+    },
+    {
+      "id": 15,
+      "eventTypeId": "a9da9a60163a40d9afb45ed0d62b9569",
+      "eventName": "能力认证页面中【提交审核】",
+      "eventType": 0,
+      "status": 1,
+      "createTime": "2020-01-20 15:28:32",
+      "updateTime": null,
+      "bizLineId": "fe1423e1435149fbbbb78d8c7e7cee5d"
+    }
+  ]
+}

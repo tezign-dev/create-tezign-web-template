@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta name="keywords" content=" keywords " />
+    <meta name="description" content=" description " />
+    <title></title>
+    <% if(htmlWebpackPlugin.options.monitoring ){%>
+      <script
+        src="https://static.tezign.com/tezign-web-monitor-sdk/2.0.0/bundle.min.js"
+        data-sentry-dsn=""
+      >
+      </script>
+    <%}%>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script src="//static.tezign.com/tezign-web-vendors/babel-polyfill/7.4.4/polyfill.min.js"></script>
+    <script src="//static.tezign.com/tezign-web-vendors/moment-with-locales/1.0.0/moment-with-locales.min.js"></script>
+    <script src="//static.tezign.com/tezign-web-vendors/react-3in1/1.0.0/react-3in1.min.js"></script>
+  </body>
+</html>
