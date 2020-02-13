@@ -172,7 +172,7 @@ export default class TrackConfigLocationsPage extends React.Component<any, any> 
 
   handleSearch = (value: string) => {
     const { query } = this.state
-    query.keyword = value    
+    query.searchText = value    
     this.loadData()
   }
 
