@@ -21,7 +21,7 @@ export default class LoginPage extends React.Component<any, any> {
     }, {
       key: 'password',
       label: '密码',
-      component: <Input/>,
+      component: <Input type="password"/>,
       placeholder: '请输入密码',
       rules: [{
         required: true, message: '请输入密码'
@@ -29,11 +29,13 @@ export default class LoginPage extends React.Component<any, any> {
     }]
   };
 
-  submit = () => {
+  submit = (e: any) => {
+    e.preventDefault()
     const { fields } = this.state
     validFields(fields).then((data: any) => {
       User.login(data).then(() => {
-        window.location.href = '/'
+        history.push('/')
+        window.location.reload()
       }, () => {
         message.error('登录失败')
       })
@@ -48,7 +50,7 @@ export default class LoginPage extends React.Component<any, any> {
           <Icon type="about-tezign" className="logo"/>
           数据中台
         </div>
-        <div className="page-form">
+        <form className="page-form" onSubmit={this.submit}>
           {
             fields.map((field: any, idx: number) => {
               if (field.hidden) return null
@@ -62,8 +64,8 @@ export default class LoginPage extends React.Component<any, any> {
               )
             })
           }
-          <Button className="form-button" onClick={this.submit} block>登 录</Button>
-        </div>
+          <Button htmlType="submit" className="form-button" onClick={this.submit} block>登 录</Button>
+        </form>
       </div>
     );
   }

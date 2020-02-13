@@ -125,6 +125,7 @@ export default class BizLineListPage extends React.Component<any, any> {
       <div >
         <div className="mb-16">
           <Input.Search 
+            disabled
             allowClear
             placeholder="搜索业务线"
             onSearch={this.handleSearch}

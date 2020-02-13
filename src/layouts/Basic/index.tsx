@@ -7,6 +7,7 @@ import convertTree2Map, { getTreeBranch } from 'commons.js/functions/convertTree
 import each from 'lodash/each'
 import './index.scss'
 
+import HomePage from '@/pages/home/';
 import BizLineListPage from '@/pages/biz-lines/list';
 import ProductListPage from '@/pages/products/list';
 import TrackConfigEventsPage from '@/pages/track-configs/events';
@@ -140,9 +141,16 @@ export default class BasicLayout extends React.Component<any, any> {
     })
   }
 
+  toHomePage = () => {
+    const { history } = this.props
+    this.setState({ selectedKeys: [] })
+    history.push('/')
+  }
+
   renderNav() {
     const { pathname } = this.props.location;
     const node: any = getCurrentMenuNode(pathname)
+    if (!node) return null
     return (
       <div className="layout-nav">
         <Breadcrumb>
@@ -168,9 +176,9 @@ export default class BasicLayout extends React.Component<any, any> {
     return (
       <div className={cs('basic-layout', { 'menu-collapsed': menuCollapsed })}>
         <div className="layout-side">
-          <div className="side-head">
+          <div className="side-head" onClick={this.toHomePage}>
             <Icon type="about-tezign" className="logo"/>
-            数据中台
+            <span className="title">数据中台</span>
           </div>
           <Menu
             onClick={this.handleClick}
@@ -195,6 +203,7 @@ export default class BasicLayout extends React.Component<any, any> {
               <Route path="/track-configs/events" component={TrackConfigEventsPage} />
               <Route path="/track-configs/locations" component={TrackConfigLocationsPage} />
               <Route path="/reports/website-performances" component={wpsReportPage} />
+              <Route path="" component={HomePage} />
             </Switch>
           </div>
         </div>

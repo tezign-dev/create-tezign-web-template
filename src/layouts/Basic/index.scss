@@ -17,10 +17,22 @@ $side-collapsed-width: 80px;
     }
     .layout-side {
       width: $side-collapsed-width;
+      .side-head {
+        padding-left: 0;
+        padding-right: 0;
+        justify-content: center;
+        .logo {
+          margin-right: 0;
+        }
+        .title {
+          display: none;
+        }
+      }
     }
   }
   
   .layout-side {
+    transition: width $transition-duration;
     width: $side-width;
     position: fixed;
     left: 0;
@@ -30,6 +42,7 @@ $side-collapsed-width: 80px;
     z-index: 5;
     box-shadow: 2px 0 6px rgba(0,21,41,.35);
     .side-head {
+      cursor: pointer;
       display: flex;
       align-items: center;
       color: #fff;
@@ -38,15 +51,23 @@ $side-collapsed-width: 80px;
       font-size: 16px;
       font-weight: bold;
       letter-spacing: 3px;
+      overflow: hidden;
+      &:hover {
+        color: $color-primary;
+      }
       .logo {
         margin-top: 6px; // 图标位置修正
         margin-right: 16px;
         font-size: 40px;
         line-height: 1em;
       }
+      .title {
+        word-break: keep-all;
+      }
     }
   }
   .layout-head {
+    transition: all $transition-duration;
     position: fixed;
     top: 0;
     right: 0;
