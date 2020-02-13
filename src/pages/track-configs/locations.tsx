@@ -7,15 +7,15 @@ import StatusTag from '@/components/StatusTag'
 import FormModal, { validFields } from '@/components/FormModal'
 
 function initFields(record: any, context: any) {
-  const { id, patternName, patternUrl, status, productLineId } = record
+  const { id, pageName, patternUrl, status, productLineId } = record
   const { productOptions } = context
   return [{
     key: 'id',
     value: id,
     hidden: true
   }, {
-    key: 'patternName',
-    value: patternName,
+    key: 'pageName',
+    value: pageName,
     label: '访问路径名称',
     component: <Input />,
     placeholder: '请输入访问路径名称',
@@ -71,8 +71,8 @@ export default class TrackConfigLocationsPage extends React.Component<any, any> 
     width: 320,
   }, {
     title: '访问路径规则',
-    dataIndex: 'patternName',
-    key: 'patternName',
+    dataIndex: 'pageName',
+    key: 'pageName',
     width: 300,
     render: (name: any, record: any) => (
       <div className="break-word">
