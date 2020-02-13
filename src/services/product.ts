@@ -9,7 +9,7 @@ function cacheProducts(products: any[]) {
   Products = products
   ProductsMap = {}
   Products.forEach((item: any) => {
-    ProductsMap[item.proBizLineId] = item
+    ProductsMap[item.productLineId] = item
   }) 
 }
 function clearProducts() {
@@ -23,21 +23,24 @@ export default {
     if (Products) return Promise.resolve(Products)  
     // 这里取所有的数据，由于数据量的原因不需要分页
     query = query || { pageNumber: 1, pageSize: 100 }
-    return Promise.resolve(require('./mock-api/product.getList.json')).then((rows: any) => {
-    // return http.post(`${constants.API_ORIGIN}/proBizLine/getList`, json2form(query)).then(({ rows }: any) => {
+    // return Promise.resolve(require('./mock-api/product.getList.json')).then((rows: any) => {
+    return request({
+      url: `${constants.API_ORIGIN}/productLine/getList`, 
+      data: query
+    }).then(({ rows }: any) => {
       cacheProducts(rows)
       return rows
     })
   },
-  getProductName(productId: string) {
+  getProductName(productLineId: string) {
     if (!ProductsMap) return ''
-    const item = ProductsMap[productId]
+    const item = ProductsMap[productLineId]
     if (!item) return ''
-    return item.proBizLineName
+    return item.productLineName
   },
   updateProduct(data: any) {
     return request({
-      url: `${constants.API_ORIGIN}/proBizLine/updateProBizLineRule`,
+      url: `${constants.API_ORIGIN}/productLine/updateProductLine`,
       data
     }).then((data: any) => {
       clearProducts()
@@ -46,7 +49,7 @@ export default {
   },
   addProduct(data: any) {
     return request({
-      url: `${constants.API_ORIGIN}/proBizLine/addProBizLineRule`,
+      url: `${constants.API_ORIGIN}/productLine/addProductLine`,
       data
     }).then((data: any) => {
       clearProducts()

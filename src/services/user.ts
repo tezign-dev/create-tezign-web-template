@@ -1,9 +1,25 @@
-import http from 'commons.js/http'
-import json2form from 'commons.js/functions/json2form'
 import constants from '@/commons/constants'
+import request from '@/commons/requestForAdmin'
+import storage from 'commons.js/storage'
 
-export default {
-  login(user: any) {
-    return http.post(`${constants.API_ORIGIN}/doLogin`, json2form(user))
+const User = {
+  login(data: any) {
+    return request({
+      url: `${constants.API_ORIGIN}/doLogin`,
+      data
+    }).then((res: any) => {
+      const { code, message, result } = res
+      if (code !== '0') return Promise.reject({ code, message })
+      User.afterLogin(result)
+      return result
+    })
+  },
+  afterLogin(user: any) {
+    storage.set(constants.STORAGE_KEYS.USER, user)
+  },
+  get() {
+    return storage.get(constants.STORAGE_KEYS.USER)
   }
 }
+
+export default User

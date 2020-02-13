@@ -2,7 +2,10 @@
 const constants = {
   DOMAIN: '/',
   API_ORIGIN: 'https://test-track-admin.tezign.com/admin',
-  PAGE_SIZE: 20
+  PAGE_SIZE: 10,
+  STORAGE_KEYS: {
+    USER: 'tz-user'
+  }
 };
 //
 if (__ENV__ === 'PROD') {

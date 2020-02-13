@@ -90,14 +90,11 @@ export default class BizLineListPage extends React.Component<any, any> {
 
   handleFormModalOk = () => {
     const { fmFields } = this.state
-    validFields(fmFields).then(() => {
-      let data: any = {}
-      fmFields.forEach(({ key, value }: any) => {
-        data[key] = value
-      })
+    validFields(fmFields).then((data: any) => {
       if (data.id) {
         BizLine.updateBizLine(data).then(() => {
           message.success('修改业务线成功')
+          this.setState({ fmVisible: false })
           this.loadData()
         }, () => {
           message.error('修改业务线失败')
@@ -105,6 +102,7 @@ export default class BizLineListPage extends React.Component<any, any> {
       } else {
         BizLine.addBizLine(data).then(() => {
           message.success('新增业务线成功')
+          this.setState({ fmVisible: false })
           this.loadData()
         }, () => {
           message.error('新增业务线失败')
@@ -124,7 +122,7 @@ export default class BizLineListPage extends React.Component<any, any> {
   render () {
     const { data } = this.state
     return (
-      <BasicLayout {...this.props}>
+      <div >
         <div className="mb-16">
           <Input.Search 
             allowClear
@@ -139,7 +137,7 @@ export default class BizLineListPage extends React.Component<any, any> {
         </div>
         <Table rowKey="id" columns={this.columns} dataSource={data} pagination={false}></Table> 
         {this.renderFormModal()}
-      </BasicLayout>
+      </div>
     ) 
   }
 

@@ -4,18 +4,19 @@ import BasicLayout from '@/layouts/Basic'
 import BizLine from '@/services/bizLine'
 import Product from '@/services/product'
 import StatusTag from '@/components/StatusTag'
-import FormModal, { validFields } from '@/components/FormModal'
+import FormModal from '@/components/FormModal'
+import validFields from '@/commons/utils/validFields';
 
 function initFields(product: any, context: any) {
-  const { id, proBizLineName, status, plfBizLineId } = product
+  const { id, productLineName, status, bizLineId } = product
   const { bizLineOptions } = context
   return [{
     key: 'id',
     value: id,
     hidden: true
   }, {
-    key: 'proBizLineName',
-    value: proBizLineName,
+    key: 'productLineName',
+    value: productLineName,
     label: '产品线名称',
     component: <Input />,
     placeholder: '请输入产品线名称',
@@ -25,8 +26,8 @@ function initFields(product: any, context: any) {
       min: 3, max: 20, message: '请输入 3 到 20 个字符'  
     }]      
   }, {
-    key: 'plfBizLineId',
-    value: plfBizLineId,
+    key: 'bizLineId',
+    value: bizLineId,
     label: '所属业务线',
     component: <Select block={true} options={bizLineOptions}></Select>,
     rules: {
@@ -51,12 +52,12 @@ export default class ProductListPage extends React.Component<any, any> {
 
   private columns = [{
     title: '产品线 ID',
-    dataIndex: 'proBizLineId',
-    key: 'proBizLineId',
+    dataIndex: 'productLineId',
+    key: 'productLineId',
   }, {
     title: '产品线名称',
-    dataIndex: 'proBizLineName',
-    key: 'proBizLineName',
+    dataIndex: 'productLineName',
+    key: 'productLineName',
   }, {
     title: '所属业务线',
     dataIndex: 'bizLineName',
@@ -89,7 +90,7 @@ export default class ProductListPage extends React.Component<any, any> {
     ]).then((results: any[]) => {
       const [ bizLines, products ] = results
       products.forEach((item: any) => {
-        item.bizLineName = BizLine.getBizLineName(item.plfBizLineId)
+        item.bizLineName = BizLine.getBizLineName(item.bizLineId)
       })
       const bizLineOptions = bizLines.map((item: any) => {
         return {
@@ -120,14 +121,11 @@ export default class ProductListPage extends React.Component<any, any> {
 
   handleFormModalOk = () => {
     const { fmFields } = this.state
-    validFields(fmFields).then(() => {
-      let data: any = {}
-      fmFields.forEach(({ key, value }: any) => {
-        data[key] = value
-      })
+    validFields(fmFields).then((data: any) => {
       if (data.id) {
         Product.updateProduct(data).then(() => {
           message.success('修改产品线成功')
+          this.setState({ fmVisible: false })
           this.loadData()
         }, () => {
           message.error('修改产品线失败')
@@ -135,6 +133,7 @@ export default class ProductListPage extends React.Component<any, any> {
       } else {
         Product.addProduct(data).then(() => {
           message.success('新增产品线成功')
+          this.setState({ fmVisible: false })
           this.loadData()
         }, () => {
           message.error('新增产品线失败')
@@ -154,7 +153,7 @@ export default class ProductListPage extends React.Component<any, any> {
   render () {
     const { data } = this.state
     return (
-      <BasicLayout {...this.props}>
+      <div >
         <div className="mb-16">
           <Input.Search 
             allowClear
@@ -169,7 +168,7 @@ export default class ProductListPage extends React.Component<any, any> {
         </div>
         <Table rowKey="id" columns={this.columns} dataSource={data} pagination={false}></Table> 
         {this.renderFormModal()}
-      </BasicLayout>
+      </div>
     ) 
   }
 

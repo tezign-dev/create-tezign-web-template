@@ -7,7 +7,7 @@ import StatusTag from '@/components/StatusTag'
 import FormModal, { validFields } from '@/components/FormModal'
 
 function initFields(record: any, context: any) {
-  const { id, eventName, status, bizLineId } = record
+  const { id, eventName, status, productLineId } = record
   const { productOptions } = context
   return [{
     key: 'id',
@@ -25,8 +25,8 @@ function initFields(record: any, context: any) {
       min: 3, max: 50, message: '请输入 3 到 50 个字符'  
     }]      
   }, {
-    key: 'bizLineId',
-    value: bizLineId,
+    key: 'productLineId',
+    value: productLineId,
     label: '所属产品线',
     component: <Select block={true} options={productOptions}></Select>,
     rules: {
@@ -97,13 +97,13 @@ export default class TrackConfigEventsPage extends React.Component<any, any> {
     ]).then(([products, data]: any[]) => {
       const productOptions = products.map((item: any) => {
         return {
-          key: item.proBizLineId,
-          value: item.proBizLineId,
-          title: item.proBizLineName
+          key: item.productLineId,
+          value: item.productLineId,
+          title: item.productLineName
         }
       })
       data.rows.forEach((item: any) => {
-        item.productName = Product.getProductName(item.bizLineId)
+        item.productName = Product.getProductName(item.productLineId)
       })
       this.setState({productOptions, data})    
     })
@@ -127,14 +127,11 @@ export default class TrackConfigEventsPage extends React.Component<any, any> {
 
   handleFormModalOk = () => {
     const { fmFields } = this.state
-    validFields(fmFields).then(() => {
-      let data: any = {}
-      fmFields.forEach(({ key, value }: any) => {
-        data[key] = value
-      })
+    validFields(fmFields).then((data: any) => {
       if (data.id) {
         Track.updateEvent(data).then(() => {
           message.success('修改埋点事件成功')
+          this.setState({ fmVisible: false })
           this.loadData()
         }, () => {
           message.error('修改埋点事件失败')
@@ -142,6 +139,7 @@ export default class TrackConfigEventsPage extends React.Component<any, any> {
       } else {
         Track.addEvent(data).then(() => {
           message.success('新增埋点事件成功')
+          this.setState({ fmVisible: false })
           this.loadData()
         }, () => {
           message.error('新增埋点事件失败')
@@ -162,7 +160,7 @@ export default class TrackConfigEventsPage extends React.Component<any, any> {
 
   handleProductChange = (value: string) => {
     const { query } = this.state
-    query.product = value  
+    query.productLineId = value  
     this.loadData()
   }
 
@@ -176,13 +174,14 @@ export default class TrackConfigEventsPage extends React.Component<any, any> {
   render () {
     const { data, productOptions } = this.state
     return (
-      <BasicLayout {...this.props}>
+      <div>
         <div className="mb-16">
           <Select 
             options={productOptions} 
             placeholder="筛选产品线" 
             style={{ width: 200, marginRight: 8 }} 
             onChange={this.handleProductChange}
+            allowClear
           />
           <Input.Search 
             allowClear
@@ -207,7 +206,7 @@ export default class TrackConfigEventsPage extends React.Component<any, any> {
           }} 
         />
         {this.renderFormModal()}
-      </BasicLayout>
+      </div>
     ) 
   }
 

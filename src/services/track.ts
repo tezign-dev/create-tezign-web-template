@@ -3,9 +3,14 @@ import request from '@/commons/requestForAdmin'
 
 export default {
   searchEvents(query?: any) {
-    query = query || { pageNumber: 1, pageSize: constants.PAGE_SIZE }
-    return Promise.resolve(require('./mock-api/track.searchEvents.json')).then((data) => {
-    // return http.post(`${constants.API_ORIGIN}/proBizLine/getList`, json2form(query)).then((data: any) => {
+    query = query || {}
+    query.pageNumber = query.pageNumber || 1
+    query.pageSize = query.pageSize || constants.PAGE_SIZE
+    // return Promise.resolve(require('./mock-api/track.searchEvents.json')).then((data) => {
+    return request({
+      url: `${constants.API_ORIGIN}/event/getList`, 
+      data: query
+    }).then((data: any) => {
       data.pageNumber = query.pageNumber
       data.pageSize = query.pageSize
       return data
@@ -24,9 +29,14 @@ export default {
     })
   },
   searchLocations(query?: any) {
-    query = query || { pageNumber: 1, pageSize: constants.PAGE_SIZE }
-    return Promise.resolve(require('./mock-api/track.searchLocations.json')).then((data) => {
-    // return http.post(`${constants.API_ORIGIN}/proBizLine/getList`, json2form(query)).then((data: any) => {
+    query = query || {}
+    query.pageNumber = query.pageNumber || 1
+    query.pageSize = query.pageSize || constants.PAGE_SIZE
+    // return Promise.resolve(require('./mock-api/track.searchLocations.json')).then((data) => {
+    return request({
+      url: `${constants.API_ORIGIN}/page/getList`,
+      data: query
+    }).then((data: any) => {
       data.pageNumber = query.pageNumber
       data.pageSize = query.pageSize
       return data

@@ -1,7 +1,17 @@
 import React from 'react'
+import { matchPath } from "react-router";
+import { Route, Switch } from 'react-router-dom';
+import cs from 'classnames'
 import { Menu, Icon, Breadcrumb } from 'tezign-ui'
 import convertTree2Map, { getTreeBranch } from 'commons.js/functions/convertTree2Map'
+import each from 'lodash/each'
 import './index.scss'
+
+import BizLineListPage from '@/pages/biz-lines/list';
+import ProductListPage from '@/pages/products/list';
+import TrackConfigEventsPage from '@/pages/track-configs/events';
+import TrackConfigLocationsPage from '@/pages/track-configs/locations';
+import wpsReportPage from '@/pages/reports/website-performances/index';
 
 const SubMenu = Menu.SubMenu;
 
@@ -39,9 +49,20 @@ const MENUS = [{
 
 const MENUS_MAP = convertTree2Map(MENUS)
 
-function getOpenKeys(key: string) {
+function getCurrentMenuNode(pathname: string) {
+  let node
+  Object.keys(MENUS_MAP).some((key: string) => {
+    if (matchPath(pathname, { path: key })) {
+      node = MENUS_MAP[key]
+      return true
+    }
+    return false
+  })
+  return node
+}
+
+function getOpenKeys(node: any, pathname: string) {
   let results: any[] = []
-  const node = MENUS_MAP[key]
   if (!node) return results
   function addResult(node: any) {
     results.push(node.key)
@@ -78,86 +99,103 @@ function renderMenus(menus: any) {
 
 export default class BasicLayout extends React.Component<any, any> {
 
-  private static _prevState: any = { openKeys: [], selectedKeys: [] }
-
-  state: any = BasicLayout._prevState
+  state: any = { menuCollapsed: false, openKeys: [], selectedKeys: [] }
 
   componentDidMount() {
     this.setMenuKeys()
   }
 
-  componentDidUpdate(prevProps: any) {
-    const { path: _path } = prevProps.match
-    const { path } = this.props.match;
-    if (path !== _path) {
-      this.setMenuKeys()
-    }
-  }
-
-  componentWillUnmount() {
-    BasicLayout._prevState = this.state
-  }
-
   setMenuKeys() {
-    const { path } = this.props.match;
+    const { pathname } = this.props.location;
     const { openKeys } = this.state;
-    const _keys = getOpenKeys(path)
+    const node: any = getCurrentMenuNode(pathname)
+    if (!node) return
+    const _keys = getOpenKeys(node, pathname)
     _keys.forEach((key: any) => {
       if (openKeys.indexOf(key) > -1) return
       openKeys.push(key)
     })
     this.setState({
       openKeys,
-      selectedKeys: [path]
+      selectedKeys: [node.key]
     })
   }
 
   handleClick = ({ key }: any) => {
     const { history } = this.props
     history.push(key)
+    this.setState({ selectedKeys: [key] })
   }
 
   handleOpenChange = (openKeys: string[]) => {
     this.setState({ openKeys })
   }
 
+  toggleMenu = () => {
+    let { menuCollapsed, openKeys } = this.state
+    if (!menuCollapsed) openKeys = []
+    this.setState({ 
+      menuCollapsed: !menuCollapsed,
+      openKeys
+    })
+  }
+
   renderNav() {
-    const { path } = this.props.match;
-    const node = MENUS_MAP[path]
-    if (!node) return null
+    const { pathname } = this.props.location;
+    const node: any = getCurrentMenuNode(pathname)
     return (
       <div className="layout-nav">
         <Breadcrumb>
           <Breadcrumb.Item href="/">
             <Icon type="dashboard" />
           </Breadcrumb.Item>
-          <Breadcrumb.Item>{node.title}</Breadcrumb.Item>
+          <Breadcrumb.Item>{node && node.title}</Breadcrumb.Item>
         </Breadcrumb>
       </div>
     )
   }
 
-  render() {
-    const { children } = this.props
-    const { openKeys, selectedKeys } = this.state
+  renderHead() {
     return (
-      <div className="basic-layout">
+      <div className="layout-head">
+        <Icon type="menu" className="fz-20" onClick={this.toggleMenu}/>        
+      </div>
+    )
+  }
+
+  render() {
+    const { openKeys, selectedKeys, menuCollapsed } = this.state
+    return (
+      <div className={cs('basic-layout', { 'menu-collapsed': menuCollapsed })}>
         <div className="layout-side">
+          <div className="side-head">
+            <Icon type="about-tezign" className="logo"/>
+            数据中台
+          </div>
           <Menu
             onClick={this.handleClick}
             onOpenChange={this.handleOpenChange}
-            style={{ width: 250, height: '100%' }}
+            style={{ width: '100%' }}
             selectedKeys={selectedKeys}
             openKeys={openKeys}
+            theme="dark"
             mode="inline"
+            inlineCollapsed={menuCollapsed}
           >
             {renderMenus(MENUS)}
           </Menu>
         </div>
+        {this.renderHead()}
         <div className="layout-body">
           {this.renderNav()}
           <div className="layout-inner">
-            {children}
+            <Switch>
+              <Route path="/bizLines/list" component={BizLineListPage} />
+              <Route path="/products/list" component={ProductListPage} />
+              <Route path="/track-configs/events" component={TrackConfigEventsPage} />
+              <Route path="/track-configs/locations" component={TrackConfigLocationsPage} />
+              <Route path="/reports/website-performances" component={wpsReportPage} />
+            </Switch>
           </div>
         </div>
       </div>
