@@ -1,10 +1,74 @@
 import React from 'react';
-import { Table, Divider, Input, Icon, Button, Radio, message, Select } from 'tezign-ui';
-import BasicLayout from '@/layouts/Basic'
+import { Table, Divider, Input, Icon, Button, Radio, message, Popover, Select } from 'tezign-ui';
 import Product from '@/services/product'
 import Track from '@/services/track'
 import StatusTag from '@/components/StatusTag'
+import PartenInput from '@/components/PartenInput'
+
 import FormModal, { validFields } from '@/components/FormModal'
+
+const CodeStyle = {
+  padding: 4,
+  borderRadius: 2,
+  background: '#eee',
+  fontFamily: 'Monaco, Consolas, monospace'
+}
+
+const patternUrlLabelContent = (
+  <div className="fz-12">
+    <div className="display-flex-center mb-8">
+      <div style={{width: 30 }}>
+        <span style={CodeStyle}>?</span> 
+      </div>
+      <div className="flex-1">匹配一个字符</div>
+    </div>
+    <div className="display-flex-center mb-8">
+      <div style={{ width: 30 }}>
+        <span style={CodeStyle}>*</span> 
+      </div>
+      <div className="flex-1">匹配0个或多个字符</div>
+    </div>
+    <div className="display-flex-center mb-8">
+      <div style={{ width: 30 }}>
+        <span style={CodeStyle}>**</span> 
+      </div>
+      <div className="flex-1">匹配0个或多个目录</div>
+    </div>
+    <div className="color-text fz-14 mt-12 mb-12">用例如下</div>
+    <div className="mb-8">
+      <span style={CodeStyle}>/trip/api/*x</span>   
+    </div>
+    <div className="mb-12" >
+    匹配 /trip/api/x，/trip/api/ax，/trip/api/abx ；但不匹配 /trip/abc/x；
+    </div>
+    <div className="mb-8">
+      <span style={CodeStyle}>/trip/a/a?x</span>   
+    </div>
+    <div className="mb-12">
+    匹配 /trip/a/abx；但不匹配 /trip/a/ax，/trip/a/abcx
+    </div>
+    <div className="mb-8">
+      <span style={CodeStyle}>/**/api/alie</span>   
+    </div>
+    <div className="mb-12">
+    匹配 /trip/api/alie，/trip/dax/api/alie；但不匹配 /trip/a/api
+    </div>
+    <div className="mb-8">
+      <span style={CodeStyle}>/**/*.html</span>   
+    </div>
+    <div className="">
+    匹配所有以.html 结尾的路径
+    </div>
+  </div>
+)
+const patternUrlLabel = (
+  <span>
+    访问路径规则
+    <Popover placement="topRight" content={patternUrlLabelContent} title="可以做 URL 匹配，规则如下">
+      <Icon className="ml-4" type="guide"/>    
+    </Popover> 
+  </span>
+)
 
 function initFields(record: any, context: any) {
   const { id, pageName, patternUrl, status, productLineId } = record
@@ -27,9 +91,9 @@ function initFields(record: any, context: any) {
   }, {
     key: 'patternUrl',
     value: patternUrl,
-    label: '访问路径',
-    component: <Input />,
-    placeholder: '请输入访问路径',
+    label: patternUrlLabel,
+    component: <PartenInput />,
+    placeholder: '请输入访问路径规则',
     rules: [{
       required: true, message: '请输入访问路径'
     }, {
@@ -61,7 +125,7 @@ export default class TrackConfigLocationsPage extends React.Component<any, any> 
   state: any = { 
     data: { rows: [] }, 
     query: {}, 
-    fmFieldOptions: { inline: true, labelWidth: 100 } 
+    fmFieldOptions: { inline: true, labelWidth: 150 } 
   }
 
   private columns = [{
@@ -235,7 +299,7 @@ export default class TrackConfigLocationsPage extends React.Component<any, any> 
     if (!fmVisible) return null
     return (
       <FormModal 
-        width={500} 
+        width={960} 
         visible={fmVisible} 
         fields={fmFields} 
         fieldOptions={fmFieldOptions} 

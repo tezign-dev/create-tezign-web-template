@@ -54,4 +54,13 @@ export default {
       data
     })
   },
+  checkPatterUrl(patterUrl: string, url: string) {
+    return request({
+      url: `${constants.API_ORIGIN}/page/checkPatterUrl`, 
+      data: { url, patterUrl }
+    }).then((res: any) => {
+      if (res.result !== true) return Promise.reject()
+      return res.result
+    })
+  }
 }
