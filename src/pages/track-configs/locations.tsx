@@ -173,12 +173,14 @@ export default class TrackConfigLocationsPage extends React.Component<any, any> 
   handleSearch = (value: string) => {
     const { query } = this.state
     query.searchText = value    
+    query.pageSize = 1
     this.loadData()
   }
 
   handleProductChange = (value: string) => {
     const { query } = this.state
     query.productLineId = value  
+    query.pageSize = 1
     this.loadData()
   }
 
