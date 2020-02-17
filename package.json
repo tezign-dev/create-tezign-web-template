@@ -5,7 +5,7 @@
   "scripts": {
     "start": "webpack-dev-server --config=webpack/webpack.debug.js",
     "build": "npm run clean-dist && node_modules/.bin/webpack --config=webpack/webpack.build.js",
-    "build:prod": "__ENV_=PROD npm run build",
+    "build:prod": "__ENV__=PROD npm run build",
     "clean-dist": "rm -f -r -d dist"
   },
   "dependencies": {
