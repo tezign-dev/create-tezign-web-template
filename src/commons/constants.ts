@@ -1,5 +1,5 @@
 
-const constants = {
+const constants: any = {
   DOMAIN: '/',
   API_ORIGIN: 'https://test-track-admin.tezign.com/admin',
   PAGE_SIZE: 10,

@@ -6,6 +6,7 @@ import zhCN from 'tezign-ui/lib/locale-provider/zh_CN';
 import User from '@/services/user'
 import Router from './router';
 import history from '@/commons/history';
+import constants from '@/commons/constants';
 import './commons/styles/index.scss';
 
 
@@ -15,6 +16,8 @@ const user = User.get()
 if (user) {
   User.afterLogin(user)
 } else {
+  // todo
+  constants._prev_link = window.location.href
   history.push('/login')
 }
 

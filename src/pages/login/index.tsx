@@ -4,6 +4,7 @@ import { Form, Icon, Input, wrapFormField, Button, message } from 'tezign-ui';
 import validFields from '@/commons/utils/validFields';
 import User from '@/services/user'
 import history from '@/commons/history';
+import constants from '@/commons/constants';
 
 import './index.scss'
 
@@ -34,8 +35,13 @@ export default class LoginPage extends React.Component<any, any> {
     const { fields } = this.state
     validFields(fields).then((data: any) => {
       User.login(data).then(() => {
-        history.push('/')
-        window.location.reload()
+        if (constants._prev_link && constants._prev_link !== window.location.href) {
+          window.location.href = constants._prev_link
+          window.location.reload()
+        } else {
+          history.push('/')
+          window.location.reload()
+        }
       }, () => {
         message.error('登录失败')
       })
