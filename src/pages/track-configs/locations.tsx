@@ -65,7 +65,7 @@ const patternUrlLabel = (
   <span>
     访问路径规则
     <Popover placement="rightTop" content={patternUrlLabelContent} title="可以做 URL 匹配，规则如下">
-      <Icon className="ml-4" type="guide"/>    
+      <Icon className="tz-action ml-4" type="guide"/>    
     </Popover> 
   </span>
 )
