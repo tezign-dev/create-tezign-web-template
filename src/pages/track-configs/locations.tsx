@@ -22,7 +22,7 @@ function initFields(record: any, context: any) {
     rules: [{
       required: true, message: '请输入访问路径名称'
     }, {
-      min: 3, max: 50, message: '请输入 3 到 50 个字符'  
+      min: 3, max: 200, message: '请输入 3 到 200 个字符'  
     }]      
   }, {
     key: 'patternUrl',
@@ -33,7 +33,7 @@ function initFields(record: any, context: any) {
     rules: [{
       required: true, message: '请输入访问路径'
     }, {
-      min: 3, max: 50, message: '请输入 3 到 50 个字符'  
+      min: 3, max: 200, message: '请输入 3 到 200 个字符'  
     }]      
   }, {
     key: 'productLineId',
