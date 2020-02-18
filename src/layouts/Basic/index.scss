@@ -74,11 +74,27 @@ $side-collapsed-width: 80px;
     left: $side-width;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     height: 64px;
     padding: 0 32px;
     background: #fff;
     z-index: 3;
     box-shadow: $box-shadow-3;
+    .head-user {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      .username {
+        font-size: 16px;
+      }
+      .user-avatar {
+        display: block;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-left: 12px;
+      }
+    }
   }
   .layout-nav {
     margin-bottom: 12px;

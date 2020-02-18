@@ -2,11 +2,11 @@ import React from 'react'
 import { matchPath } from "react-router";
 import { Route, Switch } from 'react-router-dom';
 import cs from 'classnames'
-import { Menu, Icon, Breadcrumb } from 'tezign-ui'
+import { Menu, Icon, Breadcrumb, Dropdown } from 'tezign-ui'
 import convertTree2Map, { getTreeBranch } from 'commons.js/functions/convertTree2Map'
-import each from 'lodash/each'
 import './index.scss'
 
+import User from '@/services/user'
 import HomePage from '@/pages/home/';
 import BizLineListPage from '@/pages/biz-lines/list';
 import ProductListPage from '@/pages/products/list';
@@ -147,6 +147,12 @@ export default class BasicLayout extends React.Component<any, any> {
     history.push('/')
   }
 
+  logout = () => {
+    User.logout()
+    const { history } = this.props
+    history.push('/login')
+  }
+
   renderNav() {
     const { pathname } = this.props.location;
     const node: any = getCurrentMenuNode(pathname)
@@ -164,9 +170,33 @@ export default class BasicLayout extends React.Component<any, any> {
   }
 
   renderHead() {
+    const user = User.get()
+    const menu = (
+      <Menu>
+        <Menu.Item key="0" disabled>
+          <Icon type="profile"/> 
+          <span>个人资料</span>
+        </Menu.Item>
+        <Menu.Item key="1" disabled>
+          <Icon type="setting"/> 
+          <span>系统设置</span>
+        </Menu.Item>
+        <Menu.Divider />
+        <Menu.Item key="3" onClick={this.logout}>
+          <Icon type="exit"/> 
+          <span>退出登录</span>
+        </Menu.Item>
+      </Menu>
+    );
     return (
       <div className="layout-head">
-        <Icon type="menu" className="fz-20" onClick={this.toggleMenu}/>        
+        <Icon type="menu" className="fz-20" onClick={this.toggleMenu}/> 
+        <Dropdown overlay={menu} placement="bottomRight">
+          <div className="head-user">
+            <div className="username">{user.nickname}</div>
+            <img src={require('@/assets/images/avatar.svg')} className="user-avatar"/>
+          </div>    
+        </Dropdown>
       </div>
     )
   }

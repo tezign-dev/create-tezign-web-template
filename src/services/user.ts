@@ -17,6 +17,9 @@ const User = {
   afterLogin(user: any) {
     storage.set(constants.STORAGE_KEYS.USER, user)
   },
+  logout() {
+    storage.remove(constants.STORAGE_KEYS.USER)
+  },
   get() {
     return storage.get(constants.STORAGE_KEYS.USER)
   }
