@@ -162,7 +162,7 @@ export default class TrackConfigLocationsPage extends React.Component<any, any> 
       <span>
         <span className="tz-action" onClick={() => this.toEdit(record)}>编辑</span>
         <Divider type="vertical" />
-        <span className="tz-action type-danger" onClick={() => this.toDelete(record)}>删除</span>
+        <span className="tz-action type-danger disabled" onClick={() => this.toDelete(record)}>删除</span>
       </span>
     ),
   }]

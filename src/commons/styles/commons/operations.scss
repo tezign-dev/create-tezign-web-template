@@ -13,6 +13,10 @@
       color: $color-danger-dark;
     }
   }
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }
 
 .form-alert

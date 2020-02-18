@@ -2,6 +2,8 @@ const { resolve, join } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { DefinePlugin } = require('webpack');
+const webpack = require('webpack');
+
 const constants = require('./constants')
 
 module.exports = function (debug) {
@@ -25,14 +27,16 @@ module.exports = function (debug) {
           test: /\.css$/,
           use: [
             debug ? 'style-loader' : MiniCssExtractPlugin.loader,
-            { loader: 'css-loader', options: { importLoaders: 1 } }
+            { loader: 'css-loader', options: { importLoaders: 1 } },
+            'postcss-loader'
           ]
         },
         {
           test: /\.scss$/,
           loaders: [
             debug ? 'style-loader' : MiniCssExtractPlugin.loader,
-            { loader: 'css-loader', options: { importLoaders: 1 } },
+            { loader: 'css-loader', options: { importLoaders: 2 } },
+            'postcss-loader',
             'sass-loader'
           ]
         },
@@ -40,7 +44,8 @@ module.exports = function (debug) {
           test: /\.less$/,
           loaders: [
             debug ? 'style-loader' : MiniCssExtractPlugin.loader,
-            { loader: 'css-loader', options: { importLoaders: 1 } },
+            { loader: 'css-loader', options: { importLoaders: 2 } },
+            'postcss-loader',
             { loader: 'less-loader', options: { javascriptEnabled: true } }
           ]
         },
@@ -53,6 +58,7 @@ module.exports = function (debug) {
       ]
     },
     plugins: [
+      new webpack.NamedModulesPlugin(),
       new HtmlWebpackPlugin({
         template: join(__dirname, '../src/index.html'),
         monitoring: debug ? false : true	

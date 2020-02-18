@@ -29,7 +29,6 @@ module.exports = merge(getConfig(true), {
   },
   devtool: '#source-map',
   plugins: [
-    new webpack.HotModuleReplacementPlugin(), // enable HMR globally
-    new webpack.NamedModulesPlugin()
+    new webpack.HotModuleReplacementPlugin() // enable HMR globally
   ]
 });
