@@ -88,7 +88,7 @@ export default class PvWprPage extends React.Component<any, any> {
         <Breadcrumb>
           <Breadcrumb.Item href="#" onClick={this.back2}>
             <Icon type="dashboard" /> 
-            <span>网站性能</span>
+            <span>网站性能总览</span>
           </Breadcrumb.Item>
           <Breadcrumb.Item href="#" onClick={this.back}>
             <Icon type="cube" /> 

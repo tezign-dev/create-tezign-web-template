@@ -11,7 +11,7 @@ import {
 import find from 'lodash/find'
 import moment from 'moment'
 import DataSet from "@antv/data-set";
-import { DatePicker } from 'tezign-ui'
+import { DatePicker, Icon } from 'tezign-ui'
 import Wsp from '@/services/wsp'
 import Products from '@/services/product'
 import theme from '@/commons/g2/theme'
@@ -143,7 +143,8 @@ export default class WprPage extends React.Component<any, any> {
               className="list-item-wrap"
             >
               <div className="list-item">
-                <img src="" className="item-img"/>
+                {/* <img src="" className="item-img"/> */}
+                <Icon type="planet" className="item-icon"/>
                 <div className="item-title">{item.productLineName}</div>  
                 {this.renderListItemValue(item.productLineId)}
               </div>
