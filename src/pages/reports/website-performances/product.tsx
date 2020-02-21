@@ -116,7 +116,7 @@ export default class ProductWprPage extends React.Component<any, any> {
     })
   }
 
-  handleDateChange(dates: any[]) {
+  handleDateChange = (dates: any[]) => {
     const { query } = this.state
     query.dates = dates
     this.setState({ query })
@@ -143,7 +143,16 @@ export default class ProductWprPage extends React.Component<any, any> {
         <div className="layout-card">
           <div className="chart-head">
             <div className="head-title">网站加载性能趋势</div>
-            <RangePicker value={dates} onChange={this.handleDateChange}/>  
+            <RangePicker 
+              value={dates} 
+              onChange={this.handleDateChange}
+              ranges={{ 
+                '上周': [moment().subtract(1, 'week').startOf('week'), moment().subtract(1, 'week').endOf('week')], 
+                '最近一周': [moment().subtract(1, 'week'), moment()], 
+                '最近一月': [moment().subtract(1, 'month'), moment()],
+                '最近三月': [moment().subtract(3, 'month'), moment()]
+              }}
+            />  
           </div>
           {this.renderChart()}
           {this.renderTable()}

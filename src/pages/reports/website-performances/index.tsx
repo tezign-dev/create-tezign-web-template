@@ -74,7 +74,16 @@ export default class WprPage extends React.Component<any, any> {
         <div className="layout-card">
           <div className="chart-head">
             <div className="head-title">网站加载性能总览</div>
-            <RangePicker value={dates} onChange={this.handleDateChange}/>  
+            <RangePicker 
+              value={dates} 
+              onChange={this.handleDateChange}
+              ranges={{ 
+                '上周': [moment().subtract(1, 'week').startOf('week'), moment().subtract(1, 'week').endOf('week')], 
+                '最近一周': [moment().subtract(1, 'week'), moment()], 
+                '最近一月': [moment().subtract(1, 'month'), moment()],
+                '最近三月': [moment().subtract(3, 'month'), moment()], 
+              }}
+            />  
           </div>
           {this.renderChart()}
           {this.renderList()}
