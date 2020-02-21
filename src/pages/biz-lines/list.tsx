@@ -122,7 +122,7 @@ export default class BizLineListPage extends React.Component<any, any> {
   render () {
     const { data } = this.state
     return (
-      <div >
+      <div className="layout-card">
         <div className="mb-16">
           <Input.Search 
             disabled

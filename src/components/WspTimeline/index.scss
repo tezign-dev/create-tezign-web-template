@@ -1,0 +1,39 @@
+@import '../../commons/styles/variables.scss';
+@import '../../commons/styles/mixins.scss';
+
+.wsp-timeline {
+  @include clear-fix();
+  height: 10px;
+  cursor: pointer;
+  > div {
+    display: block;
+    float: left;
+    background-color: transparent;
+    height: 100%;
+  }
+}
+
+.wsp-timeline-popup {
+  .popup-item {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+    &:first-child {
+      margin-top: 0;
+    }
+    .item-label {
+      width: 120px;
+    }
+    .item-badge {
+      display: block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 12px;
+    }
+    .item-value {
+      flex: 1;
+      text-align: right;
+    }
+  }
+}

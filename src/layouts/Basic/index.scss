@@ -67,6 +67,7 @@ $side-collapsed-width: 80px;
     }
   }
   .layout-head {
+    z-index: 9;
     transition: all $transition-duration;
     position: fixed;
     top: 0;
@@ -78,7 +79,6 @@ $side-collapsed-width: 80px;
     height: 64px;
     padding: 0 32px;
     background: #fff;
-    z-index: 3;
     box-shadow: $box-shadow-3;
     .head-user {
       display: flex;
@@ -102,7 +102,7 @@ $side-collapsed-width: 80px;
   .layout-body {
     padding: 0 32px 32px;
   }
-  .layout-inner {
+  .layout-card {
     background-color: #fff;
     box-shadow: $box-shadow-4;
     padding: 16px;

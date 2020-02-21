@@ -12,7 +12,9 @@ import BizLineListPage from '@/pages/biz-lines/list';
 import ProductListPage from '@/pages/products/list';
 import TrackConfigEventsPage from '@/pages/track-configs/events';
 import TrackConfigLocationsPage from '@/pages/track-configs/locations';
-import wpsReportPage from '@/pages/reports/website-performances/index';
+import WprPage from '@/pages/reports/website-performances/index';
+import ProductWprPage from '@/pages/reports/website-performances/product';
+import PvWprPage from '@/pages/reports/website-performances/pv';
 
 const SubMenu = Menu.SubMenu;
 
@@ -225,17 +227,16 @@ export default class BasicLayout extends React.Component<any, any> {
         </div>
         {this.renderHead()}
         <div className="layout-body">
-          {this.renderNav()}
-          <div className="layout-inner">
-            <Switch>
-              <Route path="/bizLines/list" component={BizLineListPage} />
-              <Route path="/products/list" component={ProductListPage} />
-              <Route path="/track-configs/events" component={TrackConfigEventsPage} />
-              <Route path="/track-configs/locations" component={TrackConfigLocationsPage} />
-              <Route path="/reports/website-performances" component={wpsReportPage} />
-              <Route path="" component={HomePage} />
-            </Switch>
-          </div>
+          <Switch>
+            <Route path="/bizLines/list" component={BizLineListPage} />
+            <Route path="/products/list" component={ProductListPage} />
+            <Route path="/track-configs/events" component={TrackConfigEventsPage} />
+            <Route path="/track-configs/locations" component={TrackConfigLocationsPage} />
+            <Route path="/reports/website-performances/:pid/:vid" component={PvWprPage} />
+            <Route path="/reports/website-performances/:pid" component={ProductWprPage} />
+            <Route path="/reports/website-performances" component={WprPage} />
+            <Route path="" component={HomePage} />
+          </Switch>
         </div>
       </div>
     )

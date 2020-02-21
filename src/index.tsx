@@ -7,8 +7,8 @@ import User from '@/services/user'
 import Router from './router';
 import history from '@/commons/history';
 import constants from '@/commons/constants';
+import '@/commons/g2/theme';
 import './commons/styles/index.scss';
-
 
 declare let module: { hot: any };
 

@@ -176,7 +176,7 @@ export default class TrackConfigEventsPage extends React.Component<any, any> {
   render () {
     const { data, productOptions } = this.state
     return (
-      <div>
+      <div className="layout-card">
         <div className="mb-16">
           <Select 
             options={productOptions} 

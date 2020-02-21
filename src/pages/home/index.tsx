@@ -5,7 +5,7 @@ const TabPane = Tabs.TabPane
 
 export default function (props: any) {
   return (
-    <div >
+    <div className="layout-card">
       <Empty size="large" image={Empty.IMAGES.NO_DATA} description="首页暂无内容" height={400}/>
     </div>
   );

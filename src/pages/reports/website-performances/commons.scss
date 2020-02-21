@@ -1,0 +1,89 @@
+@import '@/commons/styles/variables';
+@import '@/commons/styles/mixins';
+
+.wp-common-page {
+
+  &.with-nav {
+    padding-top: 40px;
+  }
+
+  .page-nav {
+    z-index: 3;
+    top: 64px;
+    padding: 16px;
+    margin: 0 -16px;
+    width: 100%;
+    background-color: $color-bg;
+    position: fixed;
+  }
+
+  .chart-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid $color-border-dark;
+    .head-title {
+      color: $color-text-dark;
+      font-size: 16px;
+    }
+  }
+
+  .product-list {
+    @include clear-fix();
+    margin: 24px -12px 0;
+    .list-item-wrap {
+      display: block;
+      float: left;
+      width: percentage(1 / 3);
+      padding: 0 12px; 
+    }
+    .list-item {
+      border: 1px solid $color-border;
+      // box-shadow: $box-shadow-1;
+      border-radius: 3px;
+      padding: 16px;
+      height: 92px;
+      margin-bottom: 16px;
+      padding-left: 90px;
+      cursor: pointer;
+      
+      .item-img {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        display: block;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+      }
+      .item-title {
+        font-size: 16px;
+        color: $color-text-dark;
+        @include text-ellipsis();
+      }
+      .item-value {
+        font-size: 20px;
+        font-weight: bold;
+        color: $color-primary;
+      }
+      .item-sub-value {
+        font-weight: bold;
+        color: $color-primary-light;
+        margin-right: 16px;
+      }
+      &:hover {
+        // color: $color-primary;
+        border-color: $color-primary;
+      }
+    }
+  }
+
+}
+
+.pv-page {
+  .pv-detail {
+    margin-bottom: 24px;
+  }
+}
