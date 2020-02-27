@@ -24,6 +24,9 @@
     margin-bottom: 12px;
     padding-bottom: 12px;
     border-bottom: 1px solid $color-border-dark;
+    .head-gap {
+      flex: 1;
+    }
     .head-title {
       color: $color-text-dark;
       font-size: 16px;
@@ -43,7 +46,7 @@
       position: relative;
       border: 1px solid $color-border;
       // box-shadow: $box-shadow-1;
-      border-radius: 3px;
+      // border-radius: 3px;
       padding: 16px;
       height: 92px;
       margin-bottom: 16px;

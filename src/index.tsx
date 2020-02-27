@@ -25,7 +25,12 @@ render(
   <LocaleProvider locale={zhCN}>
     <Router user={user}/>
   </LocaleProvider>,
-  document.getElementById('root')
+  document.getElementById('root'),
+  () => {
+    console.log('test render callback: ', performance.now())
+  }
 );
+
+console.log('test callback: ', performance.now())
 
 if (module.hot) module.hot.accept();

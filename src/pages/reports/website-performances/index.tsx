@@ -11,12 +11,12 @@ import {
 import find from 'lodash/find'
 import moment from 'moment'
 import DataSet from "@antv/data-set";
-import { DatePicker, Icon } from 'tezign-ui'
+import { Icon } from 'tezign-ui'
 import Wsp from '@/services/wsp'
 import Products from '@/services/product'
 import theme from '@/commons/g2/theme'
 
-const { RangePicker } = DatePicker
+import ChartHead from './ChartHead'
 
 const NAMES = {
   avgBlankTime: '平均白屏时间',
@@ -27,7 +27,8 @@ export default class WprPage extends React.Component<any, any> {
 
   state: any = { 
     query: { 
-      dates: [moment().subtract(1, 'months'), moment()] 
+      dates: [moment().subtract(1, 'months'), moment()],
+      rate: 0.1 
     }, 
     data: [], 
     products: [] 
@@ -37,7 +38,14 @@ export default class WprPage extends React.Component<any, any> {
     this.loadData()
   }
 
-  handleDateChange = (dates: any[]) => {
+  handleRateChange = (value: number) => {
+    const { query } = this.state
+    query.rate = value / 100
+    this.setState({ query })
+    this.loadChartData()
+  }
+
+  handleDatesChange = (dates: any[]) => {
     const { query } = this.state
     query.dates = dates
     this.setState({ query })
@@ -68,23 +76,17 @@ export default class WprPage extends React.Component<any, any> {
   }
 
   render() {
-    const { dates } = this.state.query
+    const { dates, rate } = this.state.query
     return (
       <div className="wpr-page wp-common-page">
         <div className="layout-card">
-          <div className="chart-head">
-            <div className="head-title">网站加载性能总览</div>
-            <RangePicker 
-              value={dates} 
-              onChange={this.handleDateChange}
-              ranges={{ 
-                '上周': [moment().subtract(1, 'week').startOf('week'), moment().subtract(1, 'week').endOf('week')], 
-                '最近一周': [moment().subtract(1, 'week'), moment()], 
-                '最近一月': [moment().subtract(1, 'month'), moment()],
-                '最近三月': [moment().subtract(3, 'month'), moment()], 
-              }}
-            />  
-          </div>
+          <ChartHead 
+            title="网站加载性能总览"
+            dates={dates}
+            rate={rate}
+            onRateChange={this.handleRateChange}
+            onDatesChange={this.handleDatesChange}
+          />
           {this.renderChart()}
           {this.renderList()}
         </div>
@@ -113,7 +115,7 @@ export default class WprPage extends React.Component<any, any> {
       <div>
         <Chart 
           padding="auto"
-          height={80 * data.length} 
+          height={40 * data.length + 50} 
           data={dv} 
           theme={{ colors: theme.colors_16 }}
           forceFit

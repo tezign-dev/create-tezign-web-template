@@ -33,20 +33,24 @@ function request (options: any) {
   })
 }
 
-const API_ORIGIN = 'https://test-track-api.tezign.com'
+const API_ORIGIN = 'https://track-api.tezign.com'
 
 export default {
   loadProductionsIndexData(query: any) {
     let data = parseQueryDates(query)
-    data.rate = data.rate || 0.1
     return request({
       url: `${API_ORIGIN}/data/website/getEfficiency`,
       data
+    }).then((data: any[]) => {
+      data.forEach((item: any) => {
+        item.avgOperableTime = Math.round(item.avgOperableTime)
+        item.avgBlankTime = Math.round(item.avgBlankTime)
+      })
+      return data
     })
   },
   loadProductionIndexData(query: any) {
     let data = parseQueryDates(query)
-    data.rate = data.rate || 0.1
     return request({
       url: `${API_ORIGIN}/data/website/getEfficiencyByProLindId`,
       data
@@ -60,8 +64,8 @@ export default {
       url: `${API_ORIGIN}/data/website/getEfficiencyByPage`,
       data
     }).then((res: any) => {
-      const { apmList, count } = res
-      if (!apmList) return Promise.reject({ code: 404, message: 'no server data' })
+      const { apmList = [], count = 0 } = res
+      // if (!apmList) return Promise.reject({ code: 404, message: 'no server data' })
       apmList.forEach((item: any) => {
         Object.keys(item).forEach((key: string) => {
           if (FLOAT_VALUES[key]) {
