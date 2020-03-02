@@ -112,7 +112,7 @@ export default class ProductWprPage extends React.Component<any, any> {
   state: any = { 
     query: { 
       dates: [moment().subtract(1, 'months'), moment()],
-      rate: 0
+      rate: 0.1
     }, 
     chartData: [], 
     tableData: { 
