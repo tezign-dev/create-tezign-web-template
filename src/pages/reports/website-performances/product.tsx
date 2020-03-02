@@ -8,7 +8,7 @@ import {
   Tooltip,
   Legend,
 } from 'bizcharts';
-import forEachRight from 'lodash/forEachRight'
+// import forEachRight from 'lodash/forEachRight'
 // import debounce from 'lodash/debounce'
 import moment from 'moment'
 import { DatePicker, Table, Select, Icon, Breadcrumb } from 'tezign-ui'
@@ -111,7 +111,7 @@ export default class ProductWprPage extends React.Component<any, any> {
   state: any = { 
     query: { 
       dates: [moment().subtract(1, 'months'), moment()],
-      rate: 0.1  
+      rate: 0
     }, 
     chartData: [], 
     tableData: { 
@@ -140,7 +140,7 @@ export default class ProductWprPage extends React.Component<any, any> {
     }).then((res: any) => {
       let data: any[] = []
       let title = ''
-      forEachRight(res, (item: any) => {
+      res.forEach((item: any) => {
         const { createTime, avgBlankTime, avgOperableTime, productLineName } = item
         title = productLineName
         data.push({
