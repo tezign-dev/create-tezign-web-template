@@ -5,6 +5,29 @@ import pick from 'lodash/pick'
 import Wsp from '@/services/wsp'
 import Product from '@/services/product'
 import WspTimeline, { TIME_KEYS } from '@/components/WspTimeline'
+import Bowser from 'bowser'
+
+const IMAGES = {
+  'iOS': require('@/assets/images/systems/apple-ios.svg'),
+  'iPad': require('@/assets/images/systems/ipad.svg'),
+  'Mac OS': require('@/assets/images/systems/mac.svg'),
+  'macOS': require('@/assets/images/systems/mac.svg'),
+  'Windows': require('@/assets/images/systems/windows.png'),
+  'Linux': require('@/assets/images/systems/linux.png'),
+  'Ubuntu': require('@/assets/images/systems/ubuntu.png'),
+  'Safari': require('@/assets/images/systems/safari.png'),
+  'QQ Browser': require('@/assets/images/systems/qq-browser.png'),
+  'Chrome': require('@/assets/images/systems/chrome.png'),
+  'Firefox': require('@/assets/images/systems/firefox.svg'),
+  'Internet Explorer': require('@/assets/images/systems/internet-explorer.png'),
+  'Edge': require('@/assets/images/systems/edge.png'),
+  'WeChat': require('@/assets/images/systems/wechat.png'),
+  unknown: require('@/assets/images/systems/unknown.svg'),
+}
+
+function getImage(name: string) {
+  return IMAGES[name] || IMAGES.unknown
+}
 
 
 export default class PvWprPage extends React.Component<any, any> {
@@ -50,6 +73,7 @@ export default class PvWprPage extends React.Component<any, any> {
       this.setState({ 
         loading: false,
         data, 
+        ua: Bowser.parse(data.userAgent),
         resourceMaxTime: getMaxTime(data.resources) 
       })
     })
@@ -62,7 +86,7 @@ export default class PvWprPage extends React.Component<any, any> {
     history.push(`/reports/website-performances/${pid}`)
   }
 
-  back2= (e: any) => {
+  back2 = (e: any) => {
     e.preventDefault()
     const { history } = this.props
     history.push(`/reports/website-performances`)
@@ -101,12 +125,62 @@ export default class PvWprPage extends React.Component<any, any> {
   }
 
   renderMainTimeline() {
-    const { loading, data } = this.state
-    if (loading) return null
+    const { loading, data, ua } = this.state
+    if (loading || !ua) return null
     const props = pick(data, TIME_KEYS)
     return (
       <div className="layout-card pv-detail">
         <WspTimeline {...props} max={props.operableTime} style={{ height: 40}} />
+        <div className="d-row mt-24">
+          <div className="d-label">IP 地址</div>  
+          <div className="d-value">{data.ip}</div>
+        </div>
+        <div className="d-row mt-12">
+          <div className="d-label">页面地址</div>  
+          <div className="d-value">{data.url}</div>
+        </div>
+        <div className="d-row mt-12">
+          <div className="d-label">UserAgent</div>  
+          <div className="d-value">{data.userAgent}</div>
+        </div>
+        <div className="d-row mt-16">
+          <div className="d-row-item">
+            <img src={getImage(ua.browser.name)} className="item-img"/>
+            <div className="item-title">
+              {ua.browser.name}
+            </div>
+            <div className="item-subtitle">
+              {ua.browser.version}
+            </div>
+          </div>
+          <div className="d-row-item">
+            <img src={getImage(ua.engine.name)} className="item-img"/>
+            <div className="item-title">
+              {ua.engine.name}
+            </div>
+            <div className="item-subtitle">
+              {ua.engine.version}
+            </div>
+          </div>
+          <div className="d-row-item">
+            <img src={getImage(ua.os.name)} className="item-img"/>
+            <div className="item-title">
+              {ua.os.name}
+            </div>
+            <div className="item-subtitle">
+              {ua.os.version}
+            </div>
+          </div>
+          <div className="d-row-item">
+            <img src={getImage(ua.platform.type)} className="item-img"/>
+            <div className="item-title">
+              {ua.platform.type}
+            </div>
+            <div className="item-subtitle">
+              
+            </div>
+          </div>
+        </div>
       </div>
     )  
   }  

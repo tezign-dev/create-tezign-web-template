@@ -102,5 +102,37 @@
 .pv-page {
   .pv-detail {
     margin-bottom: 24px;
+    .d-row {
+      display: flex;
+      align-items: center;
+    }
+    .d-row-item {
+      flex: 1;
+      display: block;
+      position: relative;
+      height: 64px;
+      padding-left: 80px;
+      padding-top: 6px;
+      .item-img {
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 64px;
+        height: 64px;
+      }
+      .item-title {
+        font-size: 16px;
+        color: $color-text-dark;
+        margin-bottom: 4px;
+      }
+    }
+    .d-label {
+      color: $color-text-light;
+      width: 100px;
+    }
+    .d-value {
+      flex: 1;
+    }
   }
 }

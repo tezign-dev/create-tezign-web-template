@@ -15,9 +15,16 @@ const LABELS = {
   readyTime: '等待时间',
   dnsTime: 'DNS 时间',
   tcpTime: 'TCP 时间',
-  downloadTime: '下载时间',
+  downloadTime: '网页下载时间',
   domTime: '首屏渲染时间',
-  jsTime: 'JS 解析时间'
+  jsTime: 'JS 下载解析时间'
+}
+
+const RES_LABELS = {
+  readyTime: '等待时间',
+  dnsTime: 'DNS 时间',
+  tcpTime: 'TCP 时间',
+  downloadTime: '下载时间'
 }
 
 const TIME_KEYS = ['blankTime', 'operableTime', 'readyTime', 'dnsTime', 'tcpTime', 'downloadTime', 'duration']
@@ -69,7 +76,11 @@ export default function (props: any) {
 function renderContent(record: any) {
   const { colors = COLORS, type } = record
   let keys = ['readyTime', 'dnsTime', 'tcpTime', 'downloadTime', 'domTime', 'jsTime']
-  if (type === 'resource') keys = keys.slice(0, 4)
+  let labels: any = LABELS
+  if (type === 'resource') {
+    keys = keys.slice(0, 4)
+    labels = RES_LABELS
+  }
   if (type === 'csr') keys.splice(4, 1)
   return (
     <div className="wsp-timeline-popup">
@@ -77,7 +88,7 @@ function renderContent(record: any) {
         keys.map((key: string) => (
           <div key={key} className="popup-item">
             <span className="item-badge" style={{ background: colors[key] }}/>
-            <span className="item-label">{LABELS[key]}</span>
+            <span className="item-label">{labels[key]}</span>
             <span className="item-value">{parseFloatValue(record[key])} ms</span>  
           </div> 
         ))

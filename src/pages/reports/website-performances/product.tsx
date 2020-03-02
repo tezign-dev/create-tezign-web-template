@@ -14,6 +14,7 @@ import moment from 'moment'
 import { DatePicker, Table, Select, Icon, Breadcrumb } from 'tezign-ui'
 import Wsp from '@/services/wsp'
 import theme from '@/commons/g2/theme'
+import constants from '@/commons/constants'
 
 import ChartHead from './ChartHead'
 
@@ -117,6 +118,8 @@ export default class ProductWprPage extends React.Component<any, any> {
     tableData: { 
       list: [], 
       count: 0,
+      pageNo: 1,
+      pageSize: constants.PAGE_SIZE,
       dates: [moment().subtract(1, 'months'), moment()],
       sort: 'duration',
       direction: 'desc'
@@ -160,9 +163,9 @@ export default class ProductWprPage extends React.Component<any, any> {
 
   loadTableData() {
     const { pid } = this.props.match.params
-    const { dates, sort, direction } = this.state.tableData
+    const { dates, sort, direction, pageNo, pageSize } = this.state.tableData
     Wsp.loadProductionPvData({
-      productLineId: pid, dates, sort, direction
+      productLineId: pid, dates, sort, direction, pageNo, pageSize
     }).then((res: any) => {
       const { list, count, pageNo, pageSize } = res
       const { tableData } = this.state
@@ -203,6 +206,11 @@ export default class ProductWprPage extends React.Component<any, any> {
 
   handleTableDirectionChange = (direction: string) => {
     this.changeTableQuery('direction', direction)
+  }
+
+  handleTableChange = (pagination: any) => {
+    const { current, pageSize } = pagination
+    this.changeTableQuery('pageNo', current)
   }
 
   toPV(visitId: string) {
@@ -311,6 +319,7 @@ export default class ProductWprPage extends React.Component<any, any> {
               onClick: () => this.toPV(record.visitId)
             };
           }}
+          onChange={this.handleTableChange}
           pagination={{ current: pageNo, pageSize, total: count }}
           rowKey="visitId" 
           columns={this.columns} 

@@ -11,3 +11,6 @@ declare module '@antv/g2';
 declare module 'classnames';
 
 declare module 'styled-components';
+
+declare module 'ua-parse-js';
+
