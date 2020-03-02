@@ -308,6 +308,7 @@ export default class ProductWprPage extends React.Component<any, any> {
             options={DIRECTIONS} 
           />
           <RangePicker 
+            style={{ width: 250 }}
             className="ml-16" 
             value={dates} 
             onChange={this.handleTableDatesChange}

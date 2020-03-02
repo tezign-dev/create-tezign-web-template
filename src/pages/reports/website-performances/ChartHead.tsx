@@ -27,8 +27,9 @@ export default function (props: any) {
       >
         <Icon className="tz-action ml-4 mr-12" type="question"/>
       </Popover>
-      <InputNumber value={rate * 100} suffix="%" onChange={onRateChange} />
+      <InputNumber value={rate * 100} style={{ width: 80 }} suffix="%" onChange={onRateChange} />
       <RangePicker 
+        style={{ width: 250 }}
         className="ml-16" 
         value={dates} 
         onChange={onDatesChange}
