@@ -23,7 +23,7 @@ export default function (props: any) {
       <Popover 
         placement="left"
         title="过滤比例说明"  
-        content="按照加载耗时倒序排列，通过次值按比例过滤掉前面的数据"            
+        content="按照加载耗时倒序排列，通过此值按比例过滤掉前面的数据"            
       >
         <Icon className="tz-action ml-4 mr-12" type="question"/>
       </Popover>

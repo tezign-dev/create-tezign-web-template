@@ -54,6 +54,12 @@ export default {
     return request({
       url: `${API_ORIGIN}/data/website/getEfficiencyByProLindId`,
       data
+    }).then((res: any[]) => {
+      return res.sort((prev: any, next: any) => {
+        const p = parseDateStrToNumber(prev.createTime)
+        const n = parseDateStrToNumber(next.createTime)
+        return p - n
+      })
     })
   },
   loadProductionPvData(query: any) {
@@ -106,6 +112,11 @@ export default {
     })
   },
   
+}
+
+function parseDateStrToNumber(str: string) {
+  let res = str.substring(0, 4) + str.substring(5, 10).replace('-', '')
+  return parseInt(res)
 }
 
 function parseQueryDates(query: any) {
