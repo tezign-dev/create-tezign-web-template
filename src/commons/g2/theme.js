@@ -19,6 +19,8 @@ export default theme
 
 Global.registerTheme('tezign', theme); 
 
-Global.setTheme('tezign')
+export function setTheme() {
+  Global.setTheme('tezign')
+}
 
 // Global.setTheme('dark'); 

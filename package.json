@@ -84,6 +84,11 @@
     "ie >= 10",
     "last 2 versions"
   ],
+  "sideEffects": [
+    "*.css", 
+    "*.less",
+    "*.scss"
+  ],
   "author": "tezign",
   "license": ""
 }
