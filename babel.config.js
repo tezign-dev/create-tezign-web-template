@@ -8,6 +8,7 @@ module.exports = function(api) {
   const plugins = [
     ["@babel/plugin-proposal-class-properties", { "loose": true }],
     ["import", { "libraryName": "tezign-ui", "libraryDirectory": "lib", "style": true }, "tezign-ui"],
+    "<bizPackage>",
     // 如果需要添加其他的 import 转换
     // ["import", { "libraryName": "antd-mobile", "libraryDirectory": "lib"}, "antd-mobile"]
   ];
