@@ -6,11 +6,32 @@
     <meta http-equiv="Expires" content="0" />
     <meta name="keywords" content=" keywords " />
     <meta name="description" content=" description " />
-    <title>特赞数据中台</title>
+    <title>特赞</title>
+    <!-- preload style start -->
+    <style>
+      @keyframes app-fading { 0% { opacity: 0.2;} 50% { opacity: 1; } 100% { opacity: 0.2;} } #app-loading-skeleton { opacity: 1; transition: all 800ms; position: fixed; left: 0; right: 0; bottom: 0; top: 0; z-index: 9999; background-color: #fafafa; } #app-loading-skeleton.hide { opacity: 0; } #app-loading-skeleton svg { position: absolute; left: 0; right: 0; bottom: 6%; top: 0; margin: auto; width: 80px; height: 80px; color: #3cc8b4; animation: app-fading 2s infinite; animation-fill-mode: both; animation-timing-function: ease-in-out; }
+    </style>
+    <!-- preload style end -->
+    <!-- 埋点 SDK -->
+    <script src="//static.tezign.com/tezign-web-tracer-sdk/0.5.1/bundle.min.js"></script>
+    <!-- 监控 SDK -->
+    <% if(!htmlWebpackPlugin.options.debug) { %>
+      <script
+        src="//static.tezign.com/tezign-web-monitor-sdk/2.1.1/bundle.min.js"
+        data-sentry-dsn="${dsn}" 
+        data-pli="${pli}"
+      >
+      </script>
+    <% } %>
   </head>
 
   <body>
     <div id="root"></div>
+    <!-- preload start -->
+    <div id="app-loading-skeleton">
+      <svg fill="currentColor" viewBox="0 0 1024 1024"> <path d="M141.92 610.55c-23.985-1.08-44.325-21.6-47.97-49.815a62.37 62.37 0 0 1 4.86-33.84 62.28 62.28 0 0 1-13.275-31.455 62.325 62.325 0 0 1 4.815-33.795 62.325 62.325 0 0 1-13.23-31.5 62.325 62.325 0 0 1 4.86-33.75 62.325 62.325 0 0 1-13.275-31.5c-4.05-31.05 13.905-58.185 40.815-61.965l0.495-0.045 78.21-10.44-4.05-30.06c-6.165-47.97 17.685-78.93 65.655-85.14a23.355 23.355 0 1 1 4.77 46.485c-21.285 2.97-26.955 10.755-24.12 32.625l5.085 38.115a38.475 38.475 0 0 1-32.715 43.065l-0.27 0.045-85.725 11.475c-0.9 1.125-2.565 4.68-1.89 9.9 0.45 3.465 1.845 6.66 3.735 8.55 12.69 12.6 15.21 32.13 6.12 47.52a15.075 15.075 0 0 0-1.44 9.18c0.45 3.51 1.8 6.705 3.69 8.55 12.69 12.6 15.21 32.13 6.165 47.52a15.075 15.075 0 0 0-1.44 9.18c0.45 3.51 1.845 6.705 3.69 8.55 12.69 12.6 15.21 32.13 6.165 47.52a15.075 15.075 0 0 0-1.44 9.225c0.675 5.22 3.15 8.235 4.365 9.09a23.31 23.31 0 0 1 4.725 0.045L679.4 489.95a23.355 23.355 0 0 1 6.48 46.215L150.2 610.865a23.265 23.265 0 0 1-8.325-0.315z m680.355-360.225L308.96 322.46a23.355 23.355 0 0 1-6.525-46.215l513.36-72.135a14.4 14.4 0 0 0 12.195-16.2 23.355 23.355 0 1 1 46.215-6.525 61.11 61.11 0 0 1-51.93 68.94zM203.3 869.93a60.615 60.615 0 0 1-45.135-11.655 60.615 60.615 0 0 1-23.805-40.32l-0.405-2.88a23.355 23.355 0 0 1 46.215-6.525l0.45 2.925a14.265 14.265 0 0 0 16.2 12.24l714.735-102.285c0.9-1.17 2.43-4.77 1.665-9.945a15.075 15.075 0 0 0-3.915-8.46 38.97 38.97 0 0 1-7.2-47.385 15.03 15.03 0 0 0 1.215-9.18 15.12 15.12 0 0 0-3.915-8.46 39.015 39.015 0 0 1-7.2-47.385 14.535 14.535 0 0 0 1.215-9.225 15.075 15.075 0 0 0-3.915-8.46 39.015 39.015 0 0 1-7.2-47.385 15.075 15.075 0 0 0 1.215-9.225c-0.81-5.175-3.375-8.145-4.545-9l-85.545 12.6-0.27 0.045a38.475 38.475 0 0 1-43.335-32.355l-5.67-38.16c-3.33-22.095-11.07-27.81-33.3-24.435h-0.315a23.355 23.355 0 0 1-6.75-46.17c47.745-7.29 79.29 15.93 86.535 63.675l4.455 30.06 78.12-11.52a40.23 40.23 0 0 1 0.54-0.09c26.775-3.78 51.48 17.37 56.25 48.33 1.755 11.79 0.315 23.625-4.14 33.93 7.29 8.505 12.195 19.35 13.995 31.14 1.8 11.745 0.36 23.58-4.05 33.885 7.245 8.55 12.15 19.35 13.95 31.185 1.8 11.745 0.36 23.58-4.05 33.885 7.245 8.505 12.15 19.35 13.95 31.14 4.725 31.185-12.78 58.86-39.915 63l-715.95 102.42-0.18 0.045z" ></path> </svg>
+    </div>
+    <!-- preload end -->
     <script src="//static.tezign.com/tezign-web-vendors/babel-polyfill/7.4.4/polyfill.min.js"></script>
     <script src="//static.tezign.com/tezign-web-vendors/moment-with-locales/1.0.0/moment-with-locales.min.js"></script>
     <script src="//static.tezign.com/tezign-web-vendors/react-3in1/1.0.0/react-3in1.min.js"></script>

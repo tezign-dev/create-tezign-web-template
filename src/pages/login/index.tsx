@@ -1,10 +1,9 @@
 import React from 'react';
-import cs from 'classnames';
-import { Form, Icon, Input, wrapFormField, Button, message } from 'tezign-ui';
-import validFields from '@/commons/utils/validFields';
+import { Icon, Input, wrapFormField, Button, message } from 'tezign-ui';
 import User from '@/services/user'
 import history from '@/commons/history';
-import constants from '@/commons/constants';
+import validFormFields from 'commons.js/functions/validFormFields'
+import parseUrlParamsToObject from 'commons.js/functions/parseUrlParamsToObject'
 
 import './index.scss'
 
@@ -33,13 +32,22 @@ export default class LoginPage extends React.Component<any, any> {
   submit = (e: any) => {
     e.preventDefault()
     const { fields } = this.state
-    validFields(fields).then((data: any) => {
+    const { search } = this.props.location;
+    const { redirect } = parseUrlParamsToObject(search);
+
+    validFormFields(fields).then((data: any) => {
       User.login(data).then(() => {
-        if (constants._prev_link && constants._prev_link !== window.location.href) {
-          window.location.href = constants._prev_link
+        // 如果有重定向并且重定向地址不是登录页，则跳转至重定向页面
+        if (redirect && redirect.indexOf('/login') === -1) {
+          window.location.href = redirect
+          // 这里刷新页面是为了刷新动态生成的 router，如果使用了 redux router 可以用 redux 的方式来刷新
+          // 如果是跳转到其他站点，删除此行代码
           window.location.reload()
         } else {
+          // 默认登录后跳转到首页
           history.push('/')
+          // 这里刷新页面是为了刷新动态生成的 router，如果使用了 redux router 可以用 redux 的方式来刷新
+          // 如果是跳转到其他站点，删除此行代码
           window.location.reload()
         }
       }, () => {
@@ -54,7 +62,7 @@ export default class LoginPage extends React.Component<any, any> {
       <div className="login-page">
         <div className="page-head">
           <Icon type="about-tezign" className="logo"/>
-          数据中台
+          Tezign
         </div>
         <form className="page-form" onSubmit={this.submit}>
           {

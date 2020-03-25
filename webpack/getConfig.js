@@ -6,7 +6,7 @@ const webpack = require('webpack');
 
 const constants = require('./constants')
 
-module.exports = function (debug) {
+module.exports = function (debug = false) {
   return {
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.jsx'],
@@ -61,7 +61,7 @@ module.exports = function (debug) {
       new webpack.NamedModulesPlugin(),
       new HtmlWebpackPlugin({
         template: join(__dirname, '../src/index.html'),
-        monitoring: debug ? false : true	
+        debug
       }),
       new DefinePlugin({
         __ENV__: JSON.stringify(process.env.__ENV__),

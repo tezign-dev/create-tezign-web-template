@@ -1,22 +1,22 @@
-## Available Scripts
+### 初始化项目 `npm i` 或者 `yarn`
 
-In the project directory, you can run:
+### 启动项目 `npm start`
 
-### `npm start`
+- 设置环境
+  ```
+  __ENV__=PROD npm start
+  ```
+- 设置端口
+  ```
+  PORT=5033 npm start
+  ```
 
-set APP_ENV
-```
-APP_ENV=PROD npm start
-```
-set PORT 
-```
-PORT=5033 npm start
-```
+### 打包项目 `npm run build`
 
-### `npm run build`
-
-// set APP_ENV
-```
-APP_ENV=STAGE npm run build
-```
+- 设置环境
+  ```
+  __ENV__=PROD npm run build
+  // 快捷指令
+  npm run build:prod
+  ```
 

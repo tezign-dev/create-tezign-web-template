@@ -1,17 +1,11 @@
 import constants from '@/commons/constants'
-import request from '@/commons/requestForAdmin'
 import storage from 'commons.js/storage'
 
 const User = {
   login(data: any) {
-    return request({
-      url: `${constants.API_ORIGIN}/doLogin`,
-      data
-    }).then((res: any) => {
-      const { code, message, result } = res
-      if (code !== '0') return Promise.reject({ code, message })
-      User.afterLogin(result)
-      return result
+    return Promise.resolve(data).then((user: any) => {
+      User.afterLogin(user)
+      return user
     })
   },
   afterLogin(user: any) {

@@ -6,21 +6,23 @@ import zhCN from 'tezign-ui/lib/locale-provider/zh_CN';
 import User from '@/services/user'
 import Router from './router';
 import history from '@/commons/history';
-import constants from '@/commons/constants';
-import { setTheme } from '@/commons/g2/theme';
-import './commons/styles/index.scss';
+import './index.scss';
 
 declare let module: { hot: any };
 
-setTheme()
-
 const user = User.get()
+// 判断用户状态
 if (user) {
   User.afterLogin(user)
 } else {
-  // todo
-  constants._prev_link = window.location.href
-  history.push('/login')
+  // 如果没有登录，则跳转至登录页面并在登录后重定向
+  const href = window.location.href
+  let redirect = ''
+  // 当前页面为登录页时不进行重定向
+  if (href.indexOf('/login') === -1) {
+    redirect = '?redirect=' + encodeURIComponent(href)
+  }
+  history.push('/login' + redirect)
 }
 
 render(
@@ -29,10 +31,12 @@ render(
   </LocaleProvider>,
   document.getElementById('root'),
   () => {
-    console.log('test render callback: ', performance.now())
+    // 移除页面预加载模版
+    let dom: any = document.getElementById('app-loading-skeleton')
+    // 消失动画的持续时间为 800 ms
+    dom.className += ' hide'
+    setTimeout(() => dom.remove(), 800)
   }
 );
-
-console.log('test callback: ', performance.now())
 
 if (module.hot) module.hot.accept();

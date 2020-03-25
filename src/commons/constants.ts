@@ -1,16 +1,18 @@
 
 const constants: any = {
   DOMAIN: '/',
-  API_ORIGIN: 'https://test-track-admin.tezign.com/admin',
+  API_ORIGIN: 'https://dev-api.tezign.com',
   PAGE_SIZE: 20,
   STORAGE_KEYS: {
     USER: 'tz-user'
   }
 };
-//
+// 根据环境来修改参数
+if (__ENV__ === 'TEST') {
+  constants.API_ORIGIN = 'https://test-api.tezign.com'
+}
 if (__ENV__ === 'PROD') {
-  // do something
-  constants.API_ORIGIN = 'https://track-admin.tezign.com/admin'
+  constants.API_ORIGIN = 'https://api.tezign.com'
 }
 
 export default constants;
