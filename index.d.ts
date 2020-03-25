@@ -6,11 +6,7 @@ declare const __ENV__: string;
 declare const __MOCK__: boolean;
 declare module 'js-cookie';
 declare module 'tezign-intelligence-common/*';
-declare module '@antv/g2';
-
+declare module 'tezign-platform-common/*';
 declare module 'classnames';
-
 declare module 'styled-components';
-
-declare module 'ua-parse-js';
 
