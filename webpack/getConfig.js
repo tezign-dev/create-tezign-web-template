@@ -61,6 +61,8 @@ module.exports = function (debug = false) {
       new webpack.NamedModulesPlugin(),
       new HtmlWebpackPlugin({
         template: join(__dirname, '../src/index.html'),
+        // 添加 标示 来区分 debug or build 模式
+        // npm run build 下此值为 false
         debug
       }),
       new DefinePlugin({
