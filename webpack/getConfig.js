@@ -63,7 +63,9 @@ module.exports = function (debug = false) {
         template: join(__dirname, '../src/index.html'),
         // 添加 标示 来区分 debug or build 模式
         // npm run build 下此值为 false
-        debug
+        debug,
+        // 添加环境标示
+        __ENV__: process.env.__ENV__
       }),
       new DefinePlugin({
         __ENV__: JSON.stringify(process.env.__ENV__),

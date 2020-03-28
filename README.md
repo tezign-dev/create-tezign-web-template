@@ -1,6 +1,8 @@
 ### 初始化项目 
 
-`npm i` 或者 `yarn`
+1. package.json 中业务公共包的 version 为 `latest` ，根据项目需求修改对应的版本号
+1. 修改 src/index.html 中的 `${dsn}` 和 `${pli}`  
+1. 运行指令 `npm i` 或者 `yarn`
 
 ### 启动项目 
 
@@ -30,11 +32,30 @@
 
 - 环境变量 `__ENV__`
   
-  在 cmd 指令上添加 `__ENV__=?` 后 webpack.DefinePlugin 会 在 js 的全局作用域里添加 `__ENV__` 
+  - webpack 的 DefinePlugin 会在 js 的全局作用域里添加 `__ENV__` 
+  - webpack 的 HtmlWebpackPlugin 的 options 也会添加 `__ENV__` 
 
 - 端口 `PORT`
 
-  设置 debug 模式下的网站端口  
+  设置开发模式下的网站端口  
+
+- 添加其他自定义参数 `__XXX__`
+
+  借助 webpack 的 DefinePlugin 来获取 CMD 指令上的自定义参数
+  > 配置文件地址: webpack/getConfig.js
+  ```js 
+  new DefinePlugin({
+    __ENV__: JSON.stringify(process.env.__ENV__),
+    __XXX__: JSON.stringify(process.env.__XXX__),
+    // 更多自定义参数... __???__: JSON.stringify(process.env.__???__),
+  }),
+  // 如果需要还可以把自定义参数加入到 HtmlWebpackPlugin 的 options 中
+  new HtmlWebpackPlugin({
+    //... 其他默认配置
+    __XXX__: process.env.__XXX__
+    // 更多自定义参数... __???__: process.env.__???__,
+  }),
+  ```
 
 #### webpack 配置常量
 
@@ -56,7 +77,7 @@
 │   ├── services/ 
 │   ├── index.html 网站页面模版
 │   ├── index.scss 项目样式入口
-│   ├── index.tsx 项目 js 入口
+│   ├── index.tsx 项目 ts 入口
 │   ├── router.tsx 项目的路由配置
 │   └── ...
 ├── webpack/
