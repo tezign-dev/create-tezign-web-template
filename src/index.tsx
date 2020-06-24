@@ -4,8 +4,7 @@ import { LocaleProvider } from 'tezign-ui';
 import enUS from 'tezign-ui/lib/locale-provider/en_US';
 import zhCN from 'tezign-ui/lib/locale-provider/zh_CN';
 import User from '@/services/user'
-import Root from './root';
-import { history } from '@/commons/router';
+import Router, { getHistory } from './router';
 import './index.scss';
 
 declare let module: { hot: any };
@@ -22,12 +21,12 @@ if (user) {
   if (href.indexOf('/login') === -1) {
     redirect = '?redirect=' + encodeURIComponent(href)
   }
-  history.push('/login' + redirect)
+  getHistory().push('/login' + redirect)
 }
 
 render(
   <LocaleProvider locale={zhCN}>
-    <Root user={user}/>
+    <Router user={user}/>
   </LocaleProvider>,
   document.getElementById('root'),
   () => {

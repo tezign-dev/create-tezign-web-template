@@ -1,6 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
-import Router from '@/commons/router';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import LoginPage from './pages/login/';
 import HomePage from './pages/home/';
 
@@ -14,10 +13,26 @@ export default (props: any) => {
     routes.push(<Route path="/" component={HomePage} />)
   }
   return (
-    <Router>
+    <BrowserRouter ref={setHistory}>
       <Switch>
         {routes}
       </Switch>
-    </Router> 
+    </BrowserRouter> 
   );
 };
+
+export function getHistory() {
+  return histroy
+}
+
+let histroy: any = {
+  push() {},
+  replace() {},
+  back() {}
+}
+
+function setHistory(ref: any) {
+  if (!ref) return
+  histroy = ref.history
+}
+

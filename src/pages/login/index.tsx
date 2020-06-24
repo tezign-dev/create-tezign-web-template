@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon, Input, wrapFormField, Button, message } from 'tezign-ui';
 import User from '@/services/user'
-import { history } from '@/commons/router';
+import { getHistory } from '@/router';
 import validFormFields from 'commons.js/functions/validFormFields'
 import parseUrlParamsToObject from 'commons.js/functions/parseUrlParamsToObject'
 
@@ -45,7 +45,7 @@ export default class LoginPage extends React.Component<any, any> {
           window.location.reload()
         } else {
           // 默认登录后跳转到首页
-          history.push('/')
+          getHistory().push('/')
           // 这里刷新页面是为了刷新动态生成的 router，如果使用了 redux router 可以用 redux 的方式来刷新
           // 如果是跳转到其他站点，删除此行代码
           window.location.reload()
