@@ -4,7 +4,7 @@ import { LocaleProvider } from 'tezign-ui';
 import enUS from 'tezign-ui/lib/locale-provider/en_US';
 import zhCN from 'tezign-ui/lib/locale-provider/zh_CN';
 import User from '@/services/user'
-import Router, { getHistory } from './router';
+import Router from './router';
 import './index.scss';
 
 declare let module: { hot: any };
@@ -16,12 +16,11 @@ if (user) {
 } else {
   // 如果没有登录，则跳转至登录页面并在登录后重定向
   const href = window.location.href
-  let redirect = ''
-  // 当前页面为登录页时不进行重定向
+  // 先判断当前页面不是登录页，如果是不做处理
   if (href.indexOf('/login') === -1) {
-    redirect = '?redirect=' + encodeURIComponent(href)
+    const redirect = '?redirect=' + encodeURIComponent(href)
+    window.location.href = '/login' + redirect
   }
-  getHistory().push('/login' + redirect)
 }
 
 render(

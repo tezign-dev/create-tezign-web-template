@@ -37,19 +37,8 @@ export default class LoginPage extends React.Component<any, any> {
 
     validFormFields(fields).then((data: any) => {
       User.login(data).then(() => {
-        // 如果有重定向并且重定向地址不是登录页，则跳转至重定向页面
-        if (redirect && redirect.indexOf('/login') === -1) {
-          window.location.href = redirect
-          // 这里刷新页面是为了刷新动态生成的 router，如果使用了 redux router 可以用 redux 的方式来刷新
-          // 如果是跳转到其他站点，删除此行代码
-          window.location.reload()
-        } else {
-          // 默认登录后跳转到首页
-          getHistory().push('/')
-          // 这里刷新页面是为了刷新动态生成的 router，如果使用了 redux router 可以用 redux 的方式来刷新
-          // 如果是跳转到其他站点，删除此行代码
-          window.location.reload()
-        }
+        // just for debug
+        getHistory().push('/')
       }, () => {
         message.error('登录失败')
       })
