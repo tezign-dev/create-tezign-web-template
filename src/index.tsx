@@ -31,11 +31,13 @@ render(
   </LocaleProvider>,
   document.getElementById('root'),
   () => {
+    if (!document) return
     // 移除页面预加载模版
     let dom: any = document.getElementById('app-loading-skeleton')
+    if (!dom) return
     // 消失动画的持续时间为 800 ms
     dom.className += ' hide'
-    setTimeout(() => dom.remove(), 800)
+    setTimeout(() => dom.parentNode.removeChild(dom), 800)
   }
 );
 
