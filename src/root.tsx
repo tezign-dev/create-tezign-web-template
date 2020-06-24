@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { Router } from 'react-router';
-import history from '@/commons/history';
+import Router from '@/commons/router';
 import LoginPage from './pages/login/';
 import HomePage from './pages/home/';
 
@@ -15,7 +14,7 @@ export default (props: any) => {
     routes.push(<Route path="/" component={HomePage} />)
   }
   return (
-    <Router history={history}>
+    <Router>
       <Switch>
         {routes}
       </Switch>

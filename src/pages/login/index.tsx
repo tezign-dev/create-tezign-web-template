@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon, Input, wrapFormField, Button, message } from 'tezign-ui';
 import User from '@/services/user'
-import history from '@/commons/history';
+import { history } from '@/commons/router';
 import validFormFields from 'commons.js/functions/validFormFields'
 import parseUrlParamsToObject from 'commons.js/functions/parseUrlParamsToObject'
 
