@@ -26,9 +26,9 @@ export function getHistory() {
 }
 
 let histroy: any = {
-  push() {},
-  replace() {},
-  back() {}
+  push() { console.error('the react router dom has not init') },
+  replace() { console.error('the react router dom has not init') },
+  back() { console.error('the react router dom has not init') }
 }
 
 function setHistory(ref: any) {
