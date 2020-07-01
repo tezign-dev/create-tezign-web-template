@@ -11,7 +11,7 @@ module.exports = function (debug = false) {
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.jsx'],
       alias: {
-        'react-dom': '@hot-loader/react-dom',
+        'react-dom': debug ? '@hot-loader/react-dom' : 'react-dom',
         '@': join(__dirname, '../src')
       }
     },
