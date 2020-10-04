@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "webpack-dev-server --config=webpack/debug.js",
-    "build": "npm run clean && node_modules/.bin/webpack --config=webpack/build.js",
+    "build": "npm run clean && NODE_ENV=production node_modules/.bin/webpack --config=webpack/build.js",
     "build:test": "__ENV__=TEST npm run build",
     "build:prod": "__ENV__=PROD npm run build",
     "clean": "rm -f -r -d dist"

@@ -38,5 +38,3 @@ render(
     setTimeout(() => dom.parentNode.removeChild(dom), 800)
   }
 );
-
-if (module.hot) module.hot.accept();

@@ -6,6 +6,7 @@ module.exports = function(api) {
     "@babel/preset-typescript",
   ];
   const plugins = [
+    "react-hot-loader/babel",
     ["@babel/plugin-proposal-class-properties", { "loose": true }],
     ["import", { "libraryName": "tezign-ui", "libraryDirectory": "lib", "style": true }, "tezign-ui"],
     "<bizPackage>",

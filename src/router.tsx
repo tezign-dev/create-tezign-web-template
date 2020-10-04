@@ -1,9 +1,10 @@
+import { hot } from 'react-hot-loader/root';
 import React from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import LoginPage from './pages/login/';
 import HomePage from './pages/home/';
 
-export default (props: any) => {
+const AppRouter = (props: any) => {
   const { user } = props
   const routes = [
     <Route path="/login" component={LoginPage} />
@@ -20,6 +21,8 @@ export default (props: any) => {
     </BrowserRouter> 
   );
 };
+
+export default hot(AppRouter);
 
 export function getHistory() {
   return histroy
