@@ -5,19 +5,15 @@ import LoginPage from './pages/login/';
 import HomePage from './pages/home/';
 
 const AppRouter = (props: any) => {
-  const { user } = props
-  const routes = [
-    <Route path="/login" component={LoginPage} />
-  ]
+  const { user } = props;
+  const routes = [<Route path="/login" component={LoginPage} />];
   // 可以根据用户权限初始化路由
   if (user) {
-    routes.push(<Route path="/" component={HomePage} />)
+    routes.push(<Route path="/" component={HomePage} />);
   }
   return (
     <BrowserRouter ref={setHistory}>
-      <Switch>
-        {routes}
-      </Switch>
+      <Switch>{routes}</Switch>
     </BrowserRouter> 
   );
 };
