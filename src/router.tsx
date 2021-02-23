@@ -14,24 +14,29 @@ const AppRouter = (props: any) => {
   return (
     <BrowserRouter ref={setHistory}>
       <Switch>{routes}</Switch>
-    </BrowserRouter> 
+    </BrowserRouter>
   );
 };
 
 export default hot(AppRouter);
 
 export function getHistory() {
-  return histroy
+  return histroy;
 }
 
 let histroy: any = {
-  push() { console.error('the react router dom has not init') },
-  replace() { console.error('the react router dom has not init') },
-  back() { console.error('the react router dom has not init') }
-}
+  push() {
+    console.error('the react router dom has not init');
+  },
+  replace() {
+    console.error('the react router dom has not init');
+  },
+  back() {
+    console.error('the react router dom has not init');
+  },
+};
 
 function setHistory(ref: any) {
-  if (!ref) return
-  histroy = ref.history
+  if (!ref) return;
+  histroy = ref.history;
 }
-

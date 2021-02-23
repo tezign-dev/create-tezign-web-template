@@ -47,8 +47,8 @@ export default class LoginPage extends React.Component<any, any> {
     validFormFields(fields).then((data: any) => {
       User.login(data).then(
         () => {
-        // just for debug
-        getHistory().push('/')
+          // just for debug
+          getHistory().push('/');
         },
         () => {
           message.error('登录失败');
