@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { DefinePlugin } = require('webpack');
 const webpack = require('webpack');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const constants = require('./constants')
 
@@ -69,7 +70,12 @@ module.exports = function (debug = false) {
       }),
       new DefinePlugin({
         __ENV__: JSON.stringify(process.env.__ENV__),
-      })
+      }),
+      new ForkTsCheckerWebpackPlugin({
+        typescript:{
+          configFile: '../tsconfig.json'
+        }
+      }),
     ],
     externals: {
       'react': 'React',

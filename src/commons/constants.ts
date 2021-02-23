@@ -1,4 +1,4 @@
-const constants: any = {
+const constants = {
   DOMAIN: '/',
   API_ORIGIN: 'https://dev-api.tezign.com',
   PAGE_SIZE: 20,

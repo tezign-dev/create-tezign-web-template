@@ -8,7 +8,7 @@ import parseUrlParamsToObject from 'commons.js/functions/parseUrlParamsToObject'
 import './index.scss';
 
 export default class LoginPage extends React.Component<any, any> {
-  servicePath: string;
+  servicePath: string | undefined;
   state: any = {
     fields: [
       {

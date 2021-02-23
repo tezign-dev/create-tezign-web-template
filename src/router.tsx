@@ -3,6 +3,7 @@ import React from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import LoginPage from './pages/login/';
 import HomePage from './pages/home/';
+import { History } from 'history';
 
 const AppRouter = (props: any) => {
   const { user } = props;
@@ -24,14 +25,15 @@ export function getHistory() {
   return histroy;
 }
 
-let histroy: any = {
+// @ts-ignore
+let histroy: History = {
   push() {
     console.error('the react router dom has not init');
   },
   replace() {
     console.error('the react router dom has not init');
   },
-  back() {
+  goBack() {
     console.error('the react router dom has not init');
   },
 };
