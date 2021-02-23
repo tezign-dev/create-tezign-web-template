@@ -1,136 +1,135 @@
 @import "../mixins";
+
 @import "../builds";
+
 @import "../variables";
 
 // 标题类
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3 { color: $color-text-dark }
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3 { color: $color-text-dark; }
+
 h1, .h1 { font-size: 24px; }
+
 h2, .h2 { font-size: 20px; }
+
 h3, .h3 { font-size: 16px; }
 
 // font-size
+
 @include build-font-sizes(12, 60);
-.fz-0
-{
+
+.fz-0 {
   font-size: 0;
 }
 // font family
-.font-mono
-{
+.font-mono {
   font-family: Monaco, Consolas, "Courier New", monospace;
 }
 // font-weight
-.fw-light
-{
+.fw-light {
   font-weight: $font-weight-light;
 }
-.fw-normal
-{
+
+.fw-normal {
   font-weight: $font-weight-normal;
 }
-.fw-bold
-{
+
+.fw-bold {
   font-weight: $font-weight-bold;
 }
-.fw-300
-{
+
+.fw-300 {
   font-weight: $font-weight-light;
 }
-.fw-400
-{
+
+.fw-400 {
   font-weight: $font-weight-normal;
 }
-.fw-600
-{
+
+.fw-600 {
   font-weight: $font-weight-bold;
 }
 // line-height
-.lnr
-{
+.lnr {
   line-height: inherit;
 }
-.lh-none
-{
+
+.lh-none {
   line-height: 1;
 }
-.lh-normal
-{
+
+.lh-normal {
   line-height: $line-height;
 }
-.lh-small
-{
+
+.lh-small {
   line-height: $line-height-small;
 }
-.lh-large
-{
+
+.lh-large {
   line-height: $line-height-large;
 }
 // letter spacing
-.lsp-0
-{
+.lsp-0 {
   letter-spacing: 0;
 }
-.lsp-1
-{
+
+.lsp-1 {
   letter-spacing: 1px;
 }
-.lsp-2
-{
+
+.lsp-2 {
   letter-spacing: 2px;
 }
-.lsp-3
-{
+
+.lsp-3 {
   letter-spacing: 3px;
 }
-.lsp-4
-{
+
+.lsp-4 {
   letter-spacing: 4px;
 }
-.lsp-5
-{
+
+.lsp-5 {
   letter-spacing: 5px;
 }
-.lsp-6
-{
+
+.lsp-6 {
   letter-spacing: 6px;
 }
-.lsp-7
-{
+
+.lsp-7 {
   letter-spacing: 7px;
 }
-.lsp-8
-{
+
+.lsp-8 {
   letter-spacing: 8px;
 }
 // text align
-.text-left
-{
+.text-left {
   text-align: left !important;
 }
-.text-center
-{
+
+.text-center {
   text-align: center !important;
 }
-.text-right
-{
+
+.text-right {
   text-align: right !important;
 }
-.text-justify
-{
+
+.text-justify {
   text-align: justify;
 }
 // 文本自动省略
-.text-ellipsis
-{
+.text-ellipsis {
+
   @include text-ellipsis;
 }
 // word-break
-.word-break-all
-{
+.word-break-all {
   word-break: break-all;
 }
 
-.text-nowrap
-{
+.text-nowrap {
   white-space: nowrap;
 }

@@ -1,49 +1,45 @@
 @import "mixins";
+
 @import "variables";
 
-*
-{
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-input, button, textarea
-{
+input, button, textarea {
   font-family: inherit;
 }
 
-li
-{
+li {
   list-style: none;
 }
 
-h1, h2, h3, h4, h5, h6
-{
+h1, h2, h3, h4, h5, h6 {
   color: $color-text-dark;
   font-weight: normal;
 }
 // 链接样式
-a, .link
-{
+a, .link {
   color: $color-primary;
   cursor: pointer;
   text-decoration: none;
-  &:visited
-  {
+
+  &:visited {
     color: $color-primary-light;
   }
-  &:hover
-  {
+
+  &:hover {
     color: $color-primary-dark;
   }
+
   &:focus {
-  text-decoration: none!important;
+    text-decoration: none !important;
   }
 }
 // 默认字体样式设置..
-body
-{
+body {
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
   // 字体平滑度
   -webkit-font-smoothing: antialiased;

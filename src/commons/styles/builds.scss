@@ -1,4 +1,5 @@
 // 构建颜色辅助类
+
 @mixin build-colors($name, $color) {
   // 生成颜色类 color-primary ...
   .color-#{$name} {
@@ -14,7 +15,9 @@
   }
 }
 // 生成字体大小类 .fz-14 ...
+
 @mixin build-font-sizes($begin, $end) {
+
   @for $i from $begin through $end {
     .font-#{$i} {
       font-size: #{$i}px !important;
@@ -58,9 +61,13 @@
   }
 }
 // 批量生成
+
 @mixin batch-build-spaces($count) {
+
   @for $i from 1 through $count {
+
     @include build-spaces($i * 4);
+
     @include build-spaces($i * 5);
   }
 }

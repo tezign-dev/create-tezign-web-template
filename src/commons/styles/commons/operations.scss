@@ -1,26 +1,28 @@
 @import "../variables";
 
-.tz-action
-{
+.tz-action {
   color: $color-primary;
   cursor: pointer;
+
   &:hover {
     color: $color-primary-dark;
   }
+
   &.type-danger {
     color: $color-danger;
+
     &:hover {
       color: $color-danger-dark;
     }
   }
+
   &.disabled {
     opacity: 0.5;
     cursor: not-allowed;
   }
 }
 
-.form-alert
-{
+.form-alert {
   display: inline-block;
   margin-top: 4px;
   position: relative;
@@ -30,8 +32,8 @@
   line-height: 1em;
   padding: 5px 0.75em;
   border-radius: 3px;
-  &.position-absolute
-  {
+
+  &.position-absolute {
     position: absolute;
   }
 }
