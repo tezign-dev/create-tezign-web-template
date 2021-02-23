@@ -1,0 +1,13 @@
+node_modules/*
+scripts/*
+mock/*
+public/*
+webpack/*
+babel.config.js
+app/common/static-file/*
+app/public/sockjs.min.js
+.eslintrc.js
+.prettierrc.js
+.stylelintrc.js
+config-overrides.js
+webpack/*
