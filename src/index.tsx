@@ -31,7 +31,7 @@ render(
   () => {
     if (!document) return;
     // 移除页面预加载模版
-    const dom: any = document.getElementById('app-loading-skeleton')
+    const dom: any = document.getElementById('app-loading-skeleton');
     if (!dom) return;
     // 消失动画的持续时间为 800 ms
     dom.className += ' hide';
