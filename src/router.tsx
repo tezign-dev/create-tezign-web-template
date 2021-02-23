@@ -6,10 +6,10 @@ import HomePage from './pages/home/';
 
 const AppRouter = (props: any) => {
   const { user } = props;
-  const routes = [<Route path="/login" component={LoginPage} />];
+  const routes = [<Route key="login" path="/login" component={LoginPage} />];
   // 可以根据用户权限初始化路由
   if (user) {
-    routes.push(<Route path="/" component={HomePage} />);
+    routes.push(<Route key="/" path="/" component={HomePage} />);
   }
   return (
     <BrowserRouter ref={setHistory}>
